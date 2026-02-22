@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -14,3 +15,7 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+=======
+# Memoire-Journals
+Memoire is a personal journaling web app that lets users write and manage entries in one place. It includes a rich text editor, a date-based timeline to browse past posts, a people tracker to view mentions, and a photo section that links images to their related journal entries.
+>>>>>>> 83275b52e7086ddd27456e388c7c1006ee191f1b
