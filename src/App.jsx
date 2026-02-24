@@ -1,7 +1,16 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+
 function App() {
   return (
     <>
-    <h1>This is the starting point</h1>
+      <BrowserRouter>
+      <Navbar/>
+      <Sidebar/>
+        <Routes>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
