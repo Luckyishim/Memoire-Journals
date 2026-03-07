@@ -1,0 +1,57 @@
+.sidebar {
+    display: grid;
+    align-content: start;
+    gap: 80px;
+    padding: 20px;
+    width: 18%;
+    height: 92vh;
+    background-color: #73CCF9;
+    border: 1px solid rgb(213, 213, 213);
+    border-top: none;
+}
+
+
+.filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #3a3f55;
+    border-radius: 10px;
+    width: 95%;
+    height: 45px;
+    background: #F7F9FC;
+}
+
+
+.filter span {
+    margin-right: 8px;
+}
+
+.filter input {
+    background: transparent;
+    border: none;
+    color: rgb(0, 0, 0);
+    outline: none;
+
+}
+
+.pages {
+    display: grid;
+    text-align: center;
+    height: 35%;
+    gap: 30px;
+}
+
+.pages button {
+    border: none;
+    height: 50px;
+    background-color: #73CCF9;
+    font-size: 25px;
+    color: #37474F;
+}
+
+.pages button:hover {
+    color: #fff;
+    background-color: #97d0ff;
+    border-radius: 10px;
+}
