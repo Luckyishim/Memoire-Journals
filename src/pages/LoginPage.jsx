@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/LoginPage.css";
@@ -15,6 +15,13 @@ export function LoginPage() {
 
     // API data from Mock API
     const API_URL = "https://69ac57f99ca639a5217ec105.mockapi.io/api/Memoire-Users";
+    const [message, setMessage] = useState("");
+    useEffect(() => {
+        if (message) {
+            const timer = setTimeout(() => setMessage(""), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [message]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,33 +29,37 @@ export function LoginPage() {
     const resetForm = () => {
         setFormData({ username: '', email: '', password: '', confirmPassword: '' })
     }
-
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit(e);
+        }
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (isLogin) {
             try {
                 const response = await axios.get(`${API_URL}?email=${formData.email}`);
-                console.log("API response:", response.data); // Add this
+                console.log("API response:", response.data);
                 const users = response.data;
                 const foundUser = users[0];
-                console.log("Found user:", foundUser); // And this
+                console.log("Found user:", foundUser);
 
                 if (foundUser && foundUser.password === formData.password) {
                     localStorage.setItem("memoire_user", JSON.stringify(foundUser))
-                    alert("Welcome back! ✦")
-                    navigate('/dashboard')
+                    setMessage("Welcome back! ✦")
+                    setTimeout(() => navigate('/dashboard'), 1000)
                 } else {
-                    alert("Invalid email or password! ❌")
+                    setMessage("Invalid email or password! ❌")
                 }
             } catch (error) {
                 console.error("Login error:", error);
-                alert("Something went wrong during login.");
+                setMessage("Something went wrong during login.");
             }
 
         } else {
             if (formData.password !== formData.confirmPassword) {
-                alert("Passwords don't match! ❌");
+                setMessage("Passwords don't match! ❌");
                 return;
             }
 
@@ -60,18 +71,23 @@ export function LoginPage() {
                 };
 
                 await axios.post(API_URL, newUser)
-                alert("Account Created Successfully! 🎉")
+                setMessage("Account Created Successfully! 🎉")
                 resetForm();
                 setIsLogin(true)
             } catch (error) {
                 console.error("Registration error:", error);
-                alert("Could not create account.");
+                setMessage("Could not create account.");
             }
         }
     };
 
     return (
         <div className="page">
+            {message && (
+                <div className="popup-message">
+                    {message}
+                </div>
+            )}
             <div className="card">
                 <div className="title">
                     <h1>Memoire</h1>
@@ -89,6 +105,7 @@ export function LoginPage() {
                                 value={formData.username}
                                 placeholder="Username"
                                 onChange={handleChange}
+                                onKeyDown={handleKeyPress}
                                 required
                             />
                         </>
@@ -102,6 +119,7 @@ export function LoginPage() {
                         value={formData.email}
                         placeholder="Email"
                         onChange={handleChange}
+                        onKeyDown={handleKeyPress}
                         required
                     />
 
@@ -113,6 +131,7 @@ export function LoginPage() {
                         value={formData.password}
                         placeholder="Password"
                         onChange={handleChange}
+                        onKeyDown={handleKeyPress}
                         required
                     />
 
@@ -126,6 +145,7 @@ export function LoginPage() {
                                 value={formData.confirmPassword}
                                 placeholder="Confirm Password"
                                 onChange={handleChange}
+                                onKeyDown={handleKeyPress}
                                 required
                             />
                         </>

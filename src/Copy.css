@@ -1,0 +1,29 @@
+.password-toggle {
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #37474F;
+    padding: 4px 0;
+    user-select: none;
+}
+
+.password-toggle:hover {
+    color: #73CCF9;
+}
+
+.logout-btn {
+    padding: 9px;
+    background-color: #fff;
+    color: #e05c5c;
+    font-weight: 700;
+    border: 1px solid #e05c5c;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.logout-btn:hover {
+    background-color: #e05c5c;
+    color: #fff;
+}

@@ -1,0 +1,34 @@
+/* DashboardPage.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    gap: 16px;
+    background: hsl(37, 43%, 90%);
+}
+
+.icon {
+    font-size: 4rem;
+}
+
+.line {
+    font-size: 1.2rem;
+    color: #0A0A0F;
+}
+
+.entry-btn{
+    padding: 12px 32px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #73CCF9;
+    color: #0A0A0F;
+}
+.entry-btn:hover {
+    opacity: 0.9;
+}
