@@ -2,9 +2,16 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Navbar.css"
 import ThemeToggle from "./ThemeToggle";
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
-
-const API_URL = "https://69ac57f99ca639a5217ec105.mockapi.io/api/Memoire-Users"
+import { auth } from "../index";
+import {
+    onAuthStateChanged,
+    updateProfile,
+    updateEmail,
+    updatePassword,
+    reauthenticateWithCredential,
+    EmailAuthProvider,
+    signOut
+} from "firebase/auth";
 
 function getGreeting() {
     const hour = new Date().getHours();
@@ -16,22 +23,34 @@ function getGreeting() {
 export function Navbar() {
     const greeting = getGreeting();
     const navigate = useNavigate();
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem("memoire_user")))
-    const username = user?.username || "there";
+
+    const [user, setUser] = useState(null);
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [showPasswordFields, setShowPasswordFields] = useState(false)
+    const [showPasswordFields, setShowPasswordFields] = useState(false);
     const [formData, setFormData] = useState({
-        username: user?.username || "",
-        email: user?.email || "",
+        username: "",
+        email: "",
         currentPassword: "",
         newPassword: "",
         confirmPassword: "",
-    })
+    });
     const [message, setMessage] = useState("");
-
     const dropdownRef = useRef(null);
 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+            if (firebaseUser) {
+                setUser(firebaseUser);
+                        setFormData(prev => ({
+                    ...prev,
+                    username: firebaseUser.displayName || "",
+                    email: firebaseUser.email || "",
+                }));
+            }
+        });
+        return () => unsubscribe();
+    }, []);
 
     useEffect(() => {
         function handleClickOutside(e) {
@@ -41,53 +60,86 @@ export function Navbar() {
                 setShowPasswordFields(false);
             }
         }
-        document.addEventListener("mousedown", handleClickOutside)
-        return () => document.removeEventListener("mousedown", handleClickOutside)
-    }, [])
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
-    }
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
     const handleSave = async () => {
-        if (showPasswordFields) {
-            if (formData.currentPassword !== user.password) {
-                setMessage("Current Password is incorrect! ❌ ")
-                return;
-            }
-            if (formData.newPassword !== formData.confirmPassword) {
-                setMessage("New passwords don't match!❌")
-                return;
 
+        try {
+            const credential = EmailAuthProvider.credential(
+                user.email,
+                formData.currentPassword
+            );
+            await reauthenticateWithCredential(user, credential);
+        } catch (err) {
+            console.log(err)
+            setMessage("Current password is incorrect! ❌");
+            return;
+        }
+
+        if (showPasswordFields) {
+            if (formData.newPassword !== formData.confirmPassword) {
+                setMessage("New passwords don't match! ❌");
+                return;
             }
         }
-        try {
-            const updatedUser = {
-                username: formData.username,
-                email: formData.email,
-                password: showPasswordFields && formData.newPassword ? formData.newPassword : user.password,
-            }
-            const response = await axios.put(`${API_URL}/${user.id}`, updatedUser)
-            const saved = response.data;
 
-            localStorage.setItem("memoire_user", JSON.stringify(saved))
-            setUser(saved)
-            setMessage("Account has been updated!!🎉")
-            setFormData({ ...formData, currentPassword: "", newPassword: "", confirmPassword: "" })
-            setShowPasswordFields(false)
+        try {
+            if (formData.username !== user.displayName) {
+                await updateProfile(user, { displayName: formData.username });
+            }
+
+            if (formData.email !== user.email) {
+                await updateEmail(user, formData.email);
+            }
+
+            if (showPasswordFields && formData.newPassword) {
+                await updatePassword(user, formData.newPassword);
+            }
+
+            setUser(auth.currentUser);
+            setMessage("Account has been updated! 🎉");
+            setFormData(prev => ({
+                ...prev,
+                currentPassword: "",
+                newPassword: "",
+                confirmPassword: ""
+            }));
+            setShowPasswordFields(false);
+
         } catch (err) {
             console.error(err);
-            setMessage("Something went wrong...")
+            if (err.code === 'auth/email-already-in-use') {
+                setMessage("Email already in use! ❌");
+            } else if (err.code === 'auth/weak-password') {
+                setMessage("New password must be at least 6 characters! ❌");
+            } else {
+                setMessage("Something went wrong...");
+            }
         }
-    }
-    const handleLogout = () => {
-        localStorage.removeItem("memoire_user")
-        navigate("/")
-    }
+    };
+
+    const handleLogout = async () => {
+        await signOut(auth);
+        navigate("/");
+    };
+
+    const username = user?.displayName || user?.email || "there";
 
     return (
         <nav className="navbar">
-            <div className="logo">Memoire</div>
+            <div className="logo">
+                <img src="/images/letter-m.png"
+                    alt="logo"
+                    onClick={()=> navigate("/dashboard")}
+                    width="36"
+                    height="36" />
+            </div>
             <div className="greeting">
                 <span className="cursor typewriter-animation">
                     {greeting}, {username}
@@ -96,12 +148,13 @@ export function Navbar() {
             <div className="nav-right">
                 <span className="moon"> <ThemeToggle /> </span>
                 <div className="avatar" onClick={() => setDropdownOpen(!dropdownOpen)}>
-                    {username[0].toUpperCase()}</div>
+                    {username[0].toUpperCase()}
+                </div>
             </div>
 
             {dropdownOpen && (
-                <div className="acc-dropdown">
-                    <h3> Edit Account</h3>
+                <div className="acc-dropdown" ref={dropdownRef}>
+                    <h3>Edit Account</h3>
 
                     <label>Username</label>
                     <input name="username"
@@ -117,23 +170,15 @@ export function Navbar() {
                     <div
                         className="pass-toggle"
                         onClick={() => {
-                            setShowPasswordFields (!showPasswordFields);
-                            setMessage("")
+                            setShowPasswordFields(!showPasswordFields);
+                            setMessage("");
                         }}
                     >
-                        <span>{showPasswordFields ? "▲" : "▼"}
-                            Change Password
-                        </span>
+                        <span>{showPasswordFields ? "▲" : "▼"} Change Password</span>
                     </div>
+
                     {showPasswordFields && (
                         <>
-                            <label>Current Password</label>
-                            <input name="currentPassword"
-                                type="password"
-                                value={formData.currentPassword}
-                                onChange={handleChange}
-                                placeholder="Current Password"
-                            />
                             <label>New Password</label>
                             <input name="newPassword"
                                 type="password"
@@ -151,9 +196,18 @@ export function Navbar() {
                         </>
                     )}
 
-                    {message && <p className="dropdown-msg">
-                        {message} </p>}
-                    <button className="save-btn" onClick={handleSave} >
+                    <hr />
+                    {/* ✅ Current password always required to save any changes */}
+                    <label>Current Password (required to save)</label>
+                    <input name="currentPassword"
+                        type="password"
+                        value={formData.currentPassword}
+                        onChange={handleChange}
+                        placeholder="Enter current password"
+                    />
+
+                    {message && <p className="dropdown-msg">{message}</p>}
+                    <button className="save-btn" onClick={handleSave}>
                         Save Changes
                     </button>
 
@@ -163,8 +217,6 @@ export function Navbar() {
                     </button>
                 </div>
             )}
-
         </nav>
-    )
+    );
 }
-

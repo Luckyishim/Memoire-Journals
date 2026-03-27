@@ -1,11 +1,9 @@
-/* DashboardPage.css */
-
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90vh;
+    height: 88.5vh;
     gap: 16px;
     background: hsl(37, 43%, 90%);
 }
@@ -19,7 +17,7 @@
     color: #0A0A0F;
 }
 
-.entry-btn{
+.entry-btn {
     padding: 12px 32px;
     font-size: 1rem;
     cursor: pointer;
@@ -29,6 +27,8 @@
     background: #73CCF9;
     color: #0A0A0F;
 }
+
 .entry-btn:hover {
     opacity: 0.9;
+    background: #78d2ff;
 }

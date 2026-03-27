@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../index"
+
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    updateProfile
+} from "firebase/auth"
 import "../styles/LoginPage.css";
 
 export function LoginPage() {
@@ -13,8 +19,6 @@ export function LoginPage() {
         confirmPassword: ''
     });
 
-    // API data from Mock API
-    const API_URL = "https://69ac57f99ca639a5217ec105.mockapi.io/api/Memoire-Users";
     const [message, setMessage] = useState("");
     useEffect(() => {
         if (message) {
@@ -39,44 +43,54 @@ export function LoginPage() {
 
         if (isLogin) {
             try {
-                const response = await axios.get(`${API_URL}?email=${formData.email}`);
-                console.log("API response:", response.data);
-                const users = response.data;
-                const foundUser = users[0];
-                console.log("Found user:", foundUser);
-
-                if (foundUser && foundUser.password === formData.password) {
-                    localStorage.setItem("memoire_user", JSON.stringify(foundUser))
-                    setMessage("Welcome back! ✦")
-                    setTimeout(() => navigate('/dashboard'), 1000)
-                } else {
-                    setMessage("Invalid email or password! ❌")
-                }
+                const userCredential = await signInWithEmailAndPassword(
+                    auth,
+                    formData.email,
+                    formData.password
+                )
+                const user = userCredential.user;
+                console.log("Logged in as:", user.email)
+                setMessage("Welcome Back! ✦")
+                setTimeout(() => navigate('/dashboard'), 1000)
             } catch (error) {
-                console.error("Login error:", error);
-                setMessage("Something went wrong during login.");
+                console.error("Login error:".error.code)
+                if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                    setMessage("Invalid email or password! ❌")
+                } else if (error.code === 'auth/too-many-request') {
+                    setMessage("Too manu attempts. Try again later. ❌")
+                } else {
+                    setMessage("Something went wrong during login.")
+                }
             }
-
         } else {
             if (formData.password !== formData.confirmPassword) {
-                setMessage("Passwords don't match! ❌");
-                return;
+                setMessage("Passwords don't match! ❌")
+                return
             }
-
             try {
-                const newUser = {
-                    username: formData.username,
-                    email: formData.email,
-                    password: formData.password
-                };
-
-                await axios.post(API_URL, newUser)
-                setMessage("Account Created Successfully! 🎉")
-                resetForm();
+                const userCredential = await createUserWithEmailAndPassword(
+                    auth,
+                    formData.email,
+                    formData.password
+                )
+                await updateProfile(userCredential.user, {
+                    displayName: formData.username
+                })
+                console.log("Account Created for:", userCredential.user.email)
+                setMessage("Account Created Successfully!")
+                resetForm()
                 setIsLogin(true)
             } catch (error) {
-                console.error("Registration error:", error);
-                setMessage("Could not create account.");
+                console.error("Registration error:", error.code)
+                if (error.code === 'auth/email-already-in-use') {
+                    setMessage("Email already registered! ❌")
+                } else if (error.code === "auth/weak-password") {
+                    setMessage("Password must be at least 6 characters!")
+                } else if (error.code === "auth/invalid-email") {
+                    setMessage("Invalid Email Address! ❌")
+                } else {
+                    setMessage("Could not create account.")
+                }
             }
         }
     };

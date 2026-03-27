@@ -11,7 +11,6 @@
     justify-content: center;
     background-color: #73CCF9;
     width: 100%;
-    border: 1px solid #bae0ff;
     padding: 10px;
 }
 
@@ -24,7 +23,7 @@
 }
 
 .greeting {
-    color: #37474F;
+    color: #000000;
     font-weight: 500;
     font-size: 1.5rem;
     flex: 1;
@@ -76,7 +75,7 @@
 
 .avatar {
     background-color:#ffc164;
-    color: #37474F;
+    color: #000000;
     font-weight: bold;
     border-radius: 50%;
     width: 30px;
@@ -125,7 +124,7 @@
     border-radius: 8px;
     font-size: 14px;
     outline: none;
-    color: #37474F;
+    color: #000000;
 }
 
 .acc-dropdown input:focus {
@@ -141,7 +140,7 @@
 .pass-label {
     font-size: 13px;
     font-weight: 600;
-    color: #37474F;
+    color: #000000;
 }
 
 .pass-toggle{
