@@ -1,64 +1,149 @@
-
 :root {
-  /* Backgrounds */
-  --bg-body: #F0F9FF;        
-  --bg-section: #E0F2FE;        
-  --bg-card: #FFFFFF;           
-  --bg-header: #FFFFFF;        
-  
-  /* Text & Links */
-  --text-main: #1E293B;         
-  --text-muted: #64748B;        
-  --link: #0284C7;             
-  --link-hover: #0369A1;        
-  
-  /* Borders & Shadows */
-  --border: #E2E8F0;            
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  
-  /* Interactive (Buttons/Inputs) */
-  --accent: #38BDF8;          
+  /* ====== Light Theme (Default) ====== */
+
+  /* Primary Blues - Based on login page #73CCF9 */
+  --primary: #73CCF9;
+  --primary-hover: #5bb8e8;
+  --primary-light: #E0F2FE;
+  --primary-dark: #0284C7;
+
+  /* Backgrounds - Based on #F0E8DB and #F0F4F8 */
+  --bg-body: #F0E8DB;
+  --bg-section: #F0F4F8;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8FAFC;
+  --bg-input: #FFFFFF;
+  --bg-button: #73CCF9;
+  --bg-button-hover: #5bb8e8;
+  --bg-overlay: rgba(255, 255, 255, 0.9);
+
+  /* Text Colors */
+  --text-main: #0A0A0F;
+  --text-secondary: #37474F;
+  --text-muted: #64748B;
+  --text-light: #7a7590;
+  --text-inverse: #FFFFFF;
+
+  /* Borders */
+  --border-light: #F0F4F8;
+  --border: #E2E8F0;
+  --border-dark: #CBD5E1;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+  /* Accent/Interactive */
+  --accent: #38BDF8;
   --accent-hover: #0EA5E9;
-  --input-bg: #FFFFFF;
-  
+
   /* Feedback States */
-  --success: #22C55E;          
-  --error: #EF4444;            
-  --warning: #F59E0B;           
-  
-  /* Overlays & Gradients */
-  --overlay: rgba(255, 255, 255, 0.8);
-  --gradient: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+  --success-bg: #d4edda;
+  --success-text: #155724;
+  --success-border: #c3e6cb;
+  --error-bg: #f8d7da;
+  --error-text: #721c24;
+  --error-border: #f5c6cb;
+  --warning-bg: #fff3cd;
+  --warning-text: #856404;
+  --warning-border: #ffeeba;
+
+  /* Links */
+  --link: #4a90e2;
+  --link-hover: #357abd;
+
+  /* Special Colors */
+  --avatar-bg: #ffc164;
+  --gradient-bg: linear-gradient(135deg, #F0E8DB 0%, #F0F4F8 100%);
+
+  /* Sidebar */
+  --sidebar-bg: #73CCF9;
+  --sidebar-border: #000000;
+  --sidebar-text: #000000;
+  --sidebar-hover: #78d2ff;
+
+  /* Navbar */
+  --navbar-bg: #73CCF9;
+  --navbar-text: #37474F;
+
+  /* Loader */
+  --loader-bg: #F0E8DB;
+  --loader-ring: #bae0ff;
+  --loader-spinner: #73CCF9;
 }
 
 [data-theme="dark"] {
-  /* Backgrounds */
-  --bg-body: #0B192E;           
-  --bg-section: #0F172A;        
-  --bg-card: #1E293B;         
-  --bg-header: #1E293B;
-  
-  /* Text & Links */
-  --text-main: #F1F5F9;         
-  --text-muted: #94A3B8;        
-  --link: #7DD3FC;             
-  --link-hover: #BAE6FD;       
-  
-  /* Borders & Shadows */
-  --border: #334155;            
-  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-  
-  /* Interactive (Buttons/Inputs) */
-  --accent: #0EA5E9;           
-  --accent-hover: #38BDF8;
-  --input-bg: #0F172A;
-  
-  /* Feedback States (Slightly desaturated for dark mode) */
-  --success: #4ADE80;
-  --error: #F87171;
-  --warning: #FBBF24;
-  
-  /* Overlays & Gradients */
-  --overlay: rgba(15, 23, 42, 0.8);
-  --gradient: linear-gradient(135deg, #0B192E 0%, #1E293B 100%);
+  /* ====== Dark Theme ====== */
+
+  /* Primary Blues - Adjusted for dark mode */
+  --primary: #5bb8e8;
+  --primary-hover: #73CCF9;
+  --primary-light: #1E3A5F;
+  --primary-dark: #7DD3FC;
+
+  /* Backgrounds - Dark versions */
+  --bg-body: #1a1a2e;
+  --bg-section: #16213e;
+  --bg-card: #1f2937;
+  --bg-card-hover: #2d3748;
+  --bg-input: #374151;
+  --bg-button: #1f2937;
+  --bg-button-hover: #374151;
+  --bg-overlay: rgba(26, 26, 46, 0.95);
+
+  /* Text Colors - Inverted for dark mode */
+  --text-main: #eaeaea;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+  --text-light: #6b7280;
+  --text-inverse: #0A0A0F;
+
+  /* Borders - Darker */
+  --border-light: #374151;
+  --border: #4b5563;
+  --border-dark: #6b7280;
+
+  /* Shadows - Darker with more depth */
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.2);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  /* Accent/Interactive - Brighter for dark mode */
+  --accent: #7DD3FC;
+  --accent-hover: #BAE6FD;
+
+  /* Feedback States - Adjusted for dark mode */
+  --success-bg: #064e3b;
+  --success-text: #6ee7b7;
+  --success-border: #059669;
+  --error-bg: #450a0a;
+  --error-text: #fca5a5;
+  --error-border: #dc2626;
+  --warning-bg: #451a03;
+  --warning-text: #fcd34d;
+  --warning-border: #d97706;
+
+  /* Links - Brighter */
+  --link: #7DD3FC;
+  --link-hover: #BAE6FD;
+
+  /* Special Colors */
+  --avatar-bg: #f59e0b;
+  --gradient-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+
+  /* Sidebar - Dark */
+  --sidebar-bg: #16213e;
+  --sidebar-border: #0f3460;
+  --sidebar-text: #eaeaea;
+  --sidebar-hover: #1f3a5f;
+
+  /* Navbar - Dark */
+  --navbar-bg: #16213e;
+  --navbar-text: #eaeaea;
+
+  /* Loader - Dark */
+  --loader-bg: #1a1a2e;
+  --loader-ring: #1E3A5F;
+  --loader-spinner: #5bb8e8;
 }

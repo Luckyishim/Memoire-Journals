@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Navbar.css"
 import { ThemeToggle } from "./ThemeToggle";
 import { useEffect, useRef, useState } from "react";
-import { useAuth } from "../hooks";
+import { useAuth, useTheme } from "../hooks";
 import {
     updateProfile,
     updateEmail,
@@ -22,6 +22,9 @@ export function Navbar() {
     const greeting = getGreeting();
     const navigate = useNavigate();
     const { user, logout } = useAuth();
+    const { darkMode } = useTheme();
+
+    const logoImg = darkMode ? "/images/dark-logo.png" : "/images/logo.png";
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [showPasswordFields, setShowPasswordFields] = useState(false);
@@ -115,11 +118,11 @@ export function Navbar() {
     return (
         <nav className="navbar">
             <div className="logo">
-                <img src="/images/letter-m.png"
+                <img src={logoImg}
                     alt="logo"
                     onClick={() => navigate("/dashboard")}
-                    width="36"
-                    height="36" />
+                    width="140"
+                    height="46" />
             </div>
             <div className="greeting">
                 <span className="cursor typewriter-animation">

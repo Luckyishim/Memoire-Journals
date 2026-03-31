@@ -10,8 +10,10 @@ export function ThemeProvider({ children }) {
     useEffect(() => {
         localStorage.setItem("darkMode", JSON.stringify(darkMode));
         if (darkMode) {
+            document.documentElement.setAttribute("data-theme", "dark");
             document.body.classList.add("dark-mode");
         } else {
+            document.documentElement.removeAttribute("data-theme");
             document.body.classList.remove("dark-mode");
         }
     }, [darkMode]);

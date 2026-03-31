@@ -3,10 +3,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("/public/images/memoire.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    transition: background-image 0.3s ease;
 }
 
 .card {
@@ -15,8 +15,8 @@
     place-items: center;
     width: 420px;
     padding: 40px;
-    border: 2px solid #F0F4F8;
-    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--border-light);
+    background-color: var(--bg-overlay);
     border-radius: 10px;
 }
 
@@ -25,12 +25,12 @@
 }
 
 .title h1 {
-    color: #73CCF9;
+    color: var(--primary);
     font-size: 40px;
 }
 
 .title p {
-    color: #0A0A0F;
+    color: var(--text-main);
     font-size: 15px;
 }
 
@@ -42,19 +42,19 @@
 
 .form label {
     font-size: 14px;
-    color: #0A0A0F;
+    color: var(--text-main);
 }
 
 .form input {
     padding: 10px;
-    border: 1px solid #F0F4F8;
+    border: 1px solid var(--border-light);
     border-radius: 6px;
     font-size: 14px;
     outline: none;
 }
 
 .form input:focus {
-    border-color: #73CCF9;
+    border-color: var(--primary);
 }
 
 .login-btn {
@@ -62,8 +62,8 @@
     padding: 10px;
     border: none;
     border-radius: 6px;
-    background: #73CCF9;
-    color: #0A0A0F;
+    background: var(--primary);
+    color: var(--text-main);
     font-size: 15px;
     cursor: pointer;
 }
@@ -77,7 +77,7 @@
     align-items: center;
     gap: 14px;
     margin: 4px 0;
-    color: #7a7590;
+    color: var(--text-light);
     font-size: 11px;
 }
 
@@ -86,27 +86,26 @@
     content: '';
     flex: 1;
     height: 1px;
-    background: #d0d0d0;
+    background: var(--border-dark);
 }
 
 .auth-switch {
     text-align: center;
     font-size: 13px;
-    color: #7a7590;
+    color: var(--text-light);
     margin-top: 0;
     cursor: pointer;
 }
 
 .toggle-link {
-    color: #4a90e2;
+    color: var(--link);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-
 }
 
 .toggle-link:hover {
-    color: #357abd;
+    color: var(--link-hover);
     text-decoration: underline;
 }
 
@@ -120,12 +119,12 @@
     left: 50%;
     transform: translateX(-50%);
     padding: 12px 80px;
-    background-color: #fff;
-    border-left: 4px solid #357abd;
+    background-color: var(--bg-card);
+    border-left: 4px solid var(--link-hover);
     font-size: 20px;
     border-radius: 8px;
-    color: #37474F;
+    color: var(--text-secondary);
     font-weight: 500;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     z-index: 9999;
 }

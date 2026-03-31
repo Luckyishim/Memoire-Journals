@@ -10,13 +10,6 @@ export function DashboardPage() {
     const { entries, loading } = useJournal();
 
 
-    const getTimeOfDay = () => {
-        const hour = new Date().getHours();
-        if (hour < 12) return "morning";
-        if (hour < 17) return "afternoon";
-        return "evening";
-    };
-
     const suggestions = [
         "What made you smile today?",
         "What are you grateful for?",
@@ -26,6 +19,18 @@ export function DashboardPage() {
         "Who did you spend time with today?",
         "What's something you're looking forward to?",
         "What challenged you today?",
+        "How did you practice self-care today?",
+        "What inspired you recently?",
+        "What's a goal you're working towards?",
+        "Describe a moment that made you feel alive.",
+        "What’s a small victory you had today?",
+        "Who or what motivated you today?",
+        "What emotions did you experience most today?",
+        "How did you handle stress or difficulty?",
+        "What’s a memory that brings you peace?",
+        "What’s one thing you’d like to improve about yourself?",
+        "What surprised you today?",
+        "How did you express creativity today?"
     ];
     const [randomSuggestion] = useState(
         () => suggestions[Math.floor(Math.random() * suggestions.length)]
@@ -36,7 +41,7 @@ export function DashboardPage() {
 
 
             <div className="dashboard-welcome">
-                <h1>Good {getTimeOfDay()}, {user?.displayName || "there"} ✦</h1>
+                <h1> {user?.displayName || "there"} ✦</h1>
                 <p>What's on your mind today?</p>
             </div>
 
@@ -53,7 +58,11 @@ export function DashboardPage() {
 
             {!loading && (
                 <div className="dashboard-stats">
-                    <div className="stat-card">
+                    <div className="stat-card"
+                    onClick={()=>{
+                        navigate("/journals")
+                    }}
+                    >
                         <span className="stat-number">{entries.length}</span>
                         <span className="stat-label">Total Entries</span>
                     </div>

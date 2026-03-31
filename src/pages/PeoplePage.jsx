@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useJournal } from "../hooks";
-import { SearchBar } from "../components/SearchBar";
+import { SearchBar } from "../components";
 import "../styles/PeoplePage.css";
 
 export function PeoplePage() {

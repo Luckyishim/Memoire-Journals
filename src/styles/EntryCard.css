@@ -1,17 +1,17 @@
 .entry-card {
-    position: relative;
-    background: #fff;
+     position: relative;
+    background: var(--bg-card);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-sm);
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .entry-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--shadow);
 }
 
 .entry-card-header {
@@ -23,20 +23,20 @@
 
 .entry-card-title {
     font-size: 1.2rem;
-    color: #0A0A0F;
+    color: var(--text-main);
     margin: 0;
     font-weight: 600;
 }
 
 .entry-card-date {
     font-size: 0.85rem;
-    color: #888;
+    color: var(--text-muted);
     white-space: nowrap;
 }
 
 .entry-card-preview {
     font-size: 0.95rem;
-    color: #555;
+    color: var(--text-secondary);
     line-height: 1.5;
     margin-bottom: 12px;
 }
@@ -45,7 +45,7 @@
     display: flex;
     gap: 16px;
     font-size: 0.85rem;
-    color: #666;
+    color: var(--text-muted);
 }
 
 .entry-card-people,

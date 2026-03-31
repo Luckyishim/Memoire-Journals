@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useJournal } from "../hooks";
-import "../styles/JournalEditor.css"; 
+import "../styles/JournalEditor.css";
 
 export function JournalEditor({ entryId, onSave, onCancel, onDelete }) {
     const { addEntry, updateEntry, getEntryById } = useJournal();
@@ -60,10 +60,10 @@ export function JournalEditor({ entryId, onSave, onCancel, onDelete }) {
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
         const selectedText = content.substring(start, end);
-        
+
         let newText;
         let cursorOffset;
-        
+
         if (tag === "# " || tag === "## " || tag === "- " || tag === "> ") {
             const lineStart = content.lastIndexOf("\n", start - 1) + 1;
             const currentLine = content.substring(lineStart, end);
@@ -97,7 +97,6 @@ export function JournalEditor({ entryId, onSave, onCancel, onDelete }) {
                 <button type="button" onClick={() => insertFormatting("## ")} title="Heading 2">H2</button>
                 <button type="button" onClick={() => insertFormatting("- ")} title="Bullet List">•</button>
                 <button type="button" onClick={() => insertFormatting("> ")} title="Quote">Quote</button>
-                <button type="button" onClick={() => insertFormatting("`", "`")} title="Inline Code">Code</button>
             </div>
 
             <input

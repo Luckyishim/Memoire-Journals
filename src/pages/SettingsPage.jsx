@@ -158,7 +158,7 @@ export function SettingsPage() {
                 <h2>Danger Zone</h2>
                 <p className="danger-warning">These actions are irreversible. Please proceed with caution.</p>
                 <div className="danger-actions">
-                    <button className="logout-btn" onClick={handleLogout}>🚪 Logout</button>
+                    <button className="logout-btn" onClick={handleLogout}> Logout</button>
                     <button className="delete-btn" onClick={handleDeleteAccount}>🗑️ Delete Account</button>
                 </div>
             </div>

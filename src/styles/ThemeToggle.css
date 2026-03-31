@@ -1,6 +1,6 @@
 .theme {
     border: none;
-    background: #73CCF9;
+    background: var(--primary);
     font-size: 1.7rem;
     display: flex;
     justify-content: center;
@@ -13,9 +13,9 @@
 }
 
 .theme:hover {
-    background: #5bb8e8;
+    background: var(--primary-hover);
 }
 
 body.dark-mode .theme {
-    background: #1f2937;
+    background: var(--bg-button-hover);
 }

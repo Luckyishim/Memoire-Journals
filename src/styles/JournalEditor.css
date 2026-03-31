@@ -1,80 +1,90 @@
 /* JournalEditor.css */
+@import './Color.css';
+
 .journal-editor {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background: white;
+    background: var(--bg-card);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
 }
 
-.editor-toolbar {
+/* ── Toolbar ── */
+.journal-editor .editor-toolbar {
     display: flex;
     gap: 8px;
     padding: 12px;
-    background: #f5f5f5;
+    background: var(--bg-section);
     border-radius: 8px;
     margin-bottom: 20px;
     flex-wrap: wrap;
 }
 
-.editor-toolbar button {
+.journal-editor .editor-toolbar button {
+    all: unset; /* reset inherited/global styles */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 6px 12px;
-    background: white;
-    border: 1px solid #ddd;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 4px;
     cursor: pointer;
     font-weight: 500;
     transition: all 0.2s;
 }
 
-.editor-toolbar button:hover {
-    background: #e0e0e0;
-    border-color: #999;
+.journal-editor .editor-toolbar button:hover {
+    background: var(--bg-section);
+    border-color: var(--border-dark);
 }
 
-.editor-title {
+/* ── Title ── */
+.journal-editor .editor-title {
     width: 100%;
     padding: 12px;
     font-size: 24px;
     font-weight: 600;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--border);
     border-radius: 8px;
     margin-bottom: 16px;
     transition: border-color 0.2s;
 }
 
-.editor-title:focus {
+.journal-editor .editor-title:focus {
     outline: none;
-    border-color: #4CAF50;
+    border-color: var(--primary);
 }
 
-.editor-content {
+/* ── Content ── */
+.journal-editor .editor-content {
     width: 100%;
     min-height: 300px;
     padding: 12px;
     font-size: 16px;
     line-height: 1.6;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--border);
     border-radius: 8px;
     resize: vertical;
     font-family: inherit;
     margin-bottom: 24px;
 }
 
-.editor-content:focus {
+.journal-editor .editor-content:focus {
     outline: none;
-    border-color: #4CAF50;
+    border-color: var(--primary);
 }
 
-.editor-section {
+/* ── Sections ── */
+.journal-editor .editor-section {
     margin-bottom: 24px;
     padding: 16px;
-    background: #f9f9f9;
+    background: var(--bg-section);
     border-radius: 8px;
 }
 
-.section-header {
+.journal-editor .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,202 +92,172 @@
     font-weight: 500;
 }
 
-.toggle-btn,
-.upload-btn {
-    padding: 6px 12px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.2s;
-}
-
-.toggle-btn:hover,
-.upload-btn:hover {
-    background: #45a049;
-}
-
-.people-input {
+/* ── People Input ── */
+.journal-editor .people-input {
     display: flex;
     gap: 8px;
     margin-bottom: 12px;
 }
 
-.people-input input {
+.journal-editor .people-input input {
     flex: 1;
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     border-radius: 4px;
 }
 
-.people-input button {
+.journal-editor .people-input button {
+    all: unset;
     padding: 8px 16px;
-    background: #2196F3;
-    color: white;
-    border: none;
+    background: var(--primary);
+    color: var(--text-inverse);
     border-radius: 4px;
     cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.2s;
 }
 
-.people-input button:hover {
-    background: #1976D2;
+.journal-editor .people-input button:hover {
+    background: var(--primary-hover);
 }
 
-.people-tags {
+/* ── People Tags ── */
+.journal-editor .people-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 }
 
-.person-tag {
+.journal-editor .person-tag {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     padding: 6px 10px;
-    background: #e3f2fd;
+    background: var(--primary-light);
     border-radius: 16px;
     font-size: 14px;
 }
 
-.person-tag button {
-    background: none;
-    border: none;
+.journal-editor .person-tag button {
+    all: unset;
     cursor: pointer;
     font-size: 18px;
-    color: #f44336;
+    color: #e05c5c;
     padding: 0 4px;
 }
 
-.person-tag button:hover {
-    color: #d32f2f;
+.journal-editor .person-tag button:hover {
+    color: #c62828;
 }
 
-.photos-grid {
+/* ── Photos ── */
+.journal-editor .photos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 12px;
     margin-top: 12px;
 }
 
-.photo-item {
+.journal-editor .photo-item {
     position: relative;
     border-radius: 8px;
     overflow: hidden;
-    background: #f0f0f0;
+    background: var(--bg-section);
 }
 
-.photo-item img {
+.journal-editor .photo-item img {
     width: 100%;
     height: 150px;
     object-fit: cover;
 }
 
-.remove-photo {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    width: 28px;
-    height: 28px;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-}
-
-.remove-photo:hover {
-    background: rgba(244, 67, 54, 0.9);
-}
-
-.editor-actions {
+/* ── Editor Actions (Save / Cancel / Delete) ── */
+.journal-editor .editor-actions {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
     margin-top: 24px;
     padding-top: 16px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid var(--border);
 }
 
-.cancel-btn,
-.save-btn,
-.delete-btn {
+.journal-editor .editor-actions button {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px 20px;
-    border: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
+    text-align: center;
     transition: all 0.2s;
 }
 
-.cancel-btn {
-    background: #f5f5f5;
-    color: #666;
+.journal-editor .editor-actions .cancel-btn {
+    background: var(--bg-section);
+    color: var(--text-secondary);
 }
 
-.cancel-btn:hover:not(:disabled) {
-    background: #e0e0e0;
+.journal-editor .editor-actions .cancel-btn:hover:not(:disabled) {
+    background: var(--border);
 }
 
-.save-btn {
-    background: #4CAF50;
-    color: white;
+.journal-editor .editor-actions .save-btn {
+    background: var(--success-bg);
+    color: var(--success-text);
 }
 
-.save-btn:hover:not(:disabled) {
-    background: #45a049;
+.journal-editor .editor-actions .save-btn:hover:not(:disabled) {
+    background: var(--success-border);
 }
 
-.delete-btn {
-    background: #f44336;
-    color: white;
+.journal-editor .editor-actions .delete-btn {
+    background: var(--error-bg);
+    color: var(--error-text);
     margin-right: auto;
 }
 
-.delete-btn:hover:not(:disabled) {
-    background: #d32f2f;
+.journal-editor .editor-actions .delete-btn:hover:not(:disabled) {
+    background: var(--error-border);
 }
 
-button:disabled {
+/* Disabled state */
+.journal-editor .editor-actions button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
 
-/* Responsive Design */
+/* ── Responsive ── */
 @media (max-width: 768px) {
     .journal-editor {
         padding: 12px;
     }
-    
-    .editor-toolbar {
+
+    .journal-editor .editor-toolbar {
         gap: 4px;
     }
-    
-    .editor-toolbar button {
+
+    .journal-editor .editor-toolbar button {
         padding: 4px 8px;
         font-size: 12px;
     }
-    
-    .editor-title {
+
+    .journal-editor .editor-title {
         font-size: 20px;
     }
-    
-    .photos-grid {
+
+    .journal-editor .photos-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
-    
-    .editor-actions {
+
+    .journal-editor .editor-actions {
         flex-wrap: wrap;
     }
-    
-    .delete-btn {
+
+    .journal-editor .delete-btn {
         order: -1;
         width: 100%;
         margin-bottom: 8px;

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
+import "../styles/EntryCard.css"
 export function EntryCard({ entry, onDelete }) {
     const navigate = useNavigate();
 
@@ -30,8 +30,6 @@ export function EntryCard({ entry, onDelete }) {
         }
     };
 
-    const hasPhotos = entry.photos && entry.photos.length > 0;
-    const hasPeople = entry.people && entry.people.length > 0;
 
     return (
         <div
@@ -46,23 +44,6 @@ export function EntryCard({ entry, onDelete }) {
             </div>
 
             <p className="entry-card-preview">{getPreview(entry.content)}</p>
-
-            <div className="entry-card-meta">
-                {hasPeople && (
-                    <div className="entry-card-people">
-                        <span>👤</span>
-                        <span>
-                            {entry.people.map(p => p.name).join(", ")}
-                        </span>
-                    </div>
-                )}
-                {hasPhotos && (
-                    <div className="entry-card-photos">
-                        <span>📷</span>
-                        <span>{entry.photos.length} photo(s)</span>
-                    </div>
-                )}
-            </div>
 
             <button className="entry-card-delete" onClick={handleDelete}>
                 🗑️

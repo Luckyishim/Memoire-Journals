@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../index"
-
+import { useTheme } from "../hooks";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -11,6 +11,7 @@ import "../styles/LoginPage.css";
 
 export function LoginPage() {
     const navigate = useNavigate();
+    const { darkMode } = useTheme();
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({
         username: '',
@@ -95,8 +96,10 @@ export function LoginPage() {
         }
     };
 
+    const bgImage = darkMode ? "/images/memoire-dark.png" : "/images/memoire.png";
+
     return (
-        <div className="page">
+        <div className="page" style={{ backgroundImage: `url(${bgImage})` }}>
             {message && (
                 <div className="popup-message">
                     {message}

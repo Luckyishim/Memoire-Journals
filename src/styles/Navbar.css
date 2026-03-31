@@ -9,21 +9,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #73CCF9;
+    background-color: var(--navbar-bg);
     width: 100%;
     padding: 10px;
 }
 
 .logo {
-    color: #37474F;
+    color: var(--navbar-text);
     font-weight: 800;
     font-size: 1.1rem;
     padding: 16px 28px;
     min-width: 200px;
+    cursor: pointer;
 }
 
 .greeting {
-    color: #000000;
+    color: var(--text-main);
     font-weight: 500;
     font-size: 1.5rem;
     flex: 1;
@@ -64,7 +65,7 @@
     align-items: center;
     gap: 16px;
     padding: 16px 28px;
-    
+
 }
 
 .moon {
@@ -74,8 +75,8 @@
 }
 
 .avatar {
-    background-color:#ffc164;
-    color: #000000;
+    background-color: var(--avatar-bg);
+    color: var(--text-main);
     font-weight: bold;
     border-radius: 50%;
     width: 30px;
@@ -86,6 +87,7 @@
     font-size: 1.2rem;
     cursor: pointer;
 }
+
 .avatar-wrapper {
     position: relative;
 }
@@ -94,12 +96,12 @@
     position: absolute;
     top: 44px;
     right: 0;
-    background: #fff;
-    border: 1px solid #bae0ff;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 20px;
     width: 280px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -107,59 +109,60 @@
 }
 
 .acc-dropdown h3 {
-    color: #37474F;
+    color: var(--text-secondary);
     margin-bottom: 8px;
     font-size: 16px;
 }
 
 .acc-dropdown label {
     font-size: 12px;
-    color: #666;
+    color: var(--text-muted);
     margin-top: 4px;
 }
 
 .acc-dropdown input {
     padding: 8px 10px;
-    border: 1px solid #bae0ff;
+    border: 1px solid var(--border);
     border-radius: 8px;
     font-size: 14px;
     outline: none;
-    color: #000000;
+    color: var(--text-main);
 }
 
 .acc-dropdown input:focus {
-    border-color: #73CCF9;
+    border-color: var(--primary);
 }
 
 .acc-dropdown hr {
     margin: 8px 0;
     border: none;
-    border-top: 1px solid #bae0ff;
+    border-top: 1px solid var(--border);
 }
 
 .pass-label {
     font-size: 13px;
     font-weight: 600;
-    color: #000000;
+    color: var(--text-main);
 }
 
-.pass-toggle{
+.pass-toggle {
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
-    color: #37474F;
+    color: var(--text-secondary);
     padding: 4px 0;
     user-select: none;
 }
-.pass-toggle:hover{
-    color: #73CCF9;
+
+.pass-toggle:hover {
+    color: var(--primary);
 }
 
 .save-btn {
     margin-top: 10px;
     padding: 9px;
-    background-color: #73CCF9;
-    color: #37474F;
+    background-color: var(--primary);
+    color: var(--text-secondary);
     font-weight: 700;
     border: none;
     border-radius: 8px;
@@ -168,16 +171,19 @@
 }
 
 .save-btn:hover {
-    background-color: #5bb8e8;
+    background-color: var(--primary-hover);
 }
 
 .dropdown-msg {
     font-size: 13px;
-    color: #37474F;
+    color: var(--text-secondary);
 }
+
 .logout-btn {
+    display: flex;
+    justify-content: center;
     padding: 9px;
-    background-color: #fff;
+    background-color: var(--bg-card);
     color: #e05c5c;
     font-weight: 700;
     border: 1px solid #e05c5c;
