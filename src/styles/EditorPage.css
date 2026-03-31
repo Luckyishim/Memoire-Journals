@@ -1,154 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap');
+
+/* ─── Page shell ────────────────────────────────────────────────────────────── */
 .editor-page {
-    padding: 24px;
-    max-width: 1000px;
-    margin: 0 auto;
+  font-family: 'DM Sans', sans-serif;
+  background: #F9F7F4;
+  min-height: 100vh;
+  padding: 40px 24px 80px;
 }
 
+/* ─── Editor wrapper (active editor view) ───────────────────────────────────── */
 .editor-page-wrapper {
-    padding: 24px;
+  font-family: 'DM Sans', sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  background: #F9F7F4;
+  min-height: 100vh;
 }
 
+/* ─── Back button ────────────────────────────────────────────────────────────── */
 .back-btn {
-    background: transparent;
-    border: none;
-    font-size: 1rem;
-    color: #666;
-    cursor: pointer;
-    margin-bottom: 16px;
-    padding: 8px 16px;
-    border-radius: 8px;
-    transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #8B7355;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 32px;
+  letter-spacing: 0.01em;
+  transition: all 0.2s ease;
 }
 
 .back-btn:hover {
-    background: #f0f0f0;
-    color: #0A0A0F;
+  color: #5C3D2E;
+  transform: translateX(-2px);
 }
 
+.back-btn::before {
+  content: "←";
+  font-size: 1.1rem;
+}
+
+/* ─── Page header (entries list view) ───────────────────────────────────────── */
 .editor-page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid #E8DFD3;
 }
 
 .editor-page-header h1 {
-    font-size: 1.8rem;
-    color: #0A0A0F;
-    margin: 0;
+  font-family: 'Lora', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #3D2B1A;
+  margin: 0;
+  letter-spacing: -0.3px;
 }
 
 .new-entry-btn {
-    padding: 12px 24px;
-    background: #73CCF9;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 10px 24px;
+  background: #C4A57B;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .new-entry-btn:hover {
-    background: #5bb8e8;
-    transform: translateY(-1px);
+  background: #AD8B62;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(196, 165, 123, 0.25);
 }
 
+.new-entry-btn:active {
+  transform: translateY(0);
+}
+
+/* ─── Entries list ───────────────────────────────────────────────────────────── */
 .entries-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
+/* ─── Entry item ─────────────────────────────────────────────────────────────── */
 .entry-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    cursor: pointer;
-    transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 28px;
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #E8DFD3;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  animation: fadeSlideUp 0.3s ease both;
 }
 
 .entry-item:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
+  border-color: #C4A57B;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(93, 63, 36, 0.08);
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .entry-item-content {
-    flex: 1;
+  flex: 1;
+  min-width: 0;
 }
 
 .entry-item-content h3 {
-    margin: 0 0 8px 0;
-    font-size: 1.2rem;
-    color: #0A0A0F;
+  margin: 0 0 8px 0;
+  font-family: 'Lora', serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #3D2B1A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .entry-date {
-    margin: 0;
-    color: #888;
-    font-size: 0.9rem;
+  margin: 0 0 8px 0;
+  color: #A5917A;
+  font-size: 0.8rem;
+  letter-spacing: 0.3px;
+  font-weight: 500;
 }
 
 .entry-people-preview {
-    margin-top: 8px;
-    font-size: 0.85rem;
-    color: #666;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #8B7355;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
+.entry-tags-preview {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #8B7355;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ─── Delete button ──────────────────────────────────────────────────────────── */
 .entry-delete-btn {
-    background: transparent;
-    border: none;
-    font-size: 1.4rem;
-    cursor: pointer;
-    opacity: 0.5;
-    transition: opacity 0.2s ease;
-    padding: 8px;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #C4A57B;
+  padding: 8px;
+  border-radius: 8px;
+  line-height: 1;
+  transition: all 0.2s ease;
 }
 
 .entry-delete-btn:hover {
-    opacity: 1;
+  color: #D26A4A;
+  background: #FFF5F0;
+  transform: scale(1.05);
 }
 
+.entry-delete-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ─── Empty state ────────────────────────────────────────────────────────────── */
 .no-entries {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 20px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 32px;
+  background: white;
+  border-radius: 24px;
+  border: 2px dashed #E8DFD3;
+  text-align: center;
 }
 
 .no-entries-icon {
-    font-size: 4rem;
-    margin-bottom: 16px;
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  opacity: 0.6;
+  display: block;
 }
 
 .no-entries p {
-    color: #666;
-    font-size: 1.1rem;
-    margin-bottom: 20px;
+  font-family: 'Lora', serif;
+  font-style: italic;
+  color: #A5917A;
+  font-size: 1rem;
+  margin: 0 0 28px 0;
+  max-width: 320px;
+  line-height: 1.6;
 }
 
 .first-entry-btn {
-    padding: 14px 32px;
-    background: #73CCF9;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 12px 32px;
+  background: #C4A57B;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
 }
 
 .first-entry-btn:hover {
-    background: #5bb8e8;
-    transform: translateY(-1px);
+  background: #AD8B62;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(196, 165, 123, 0.3);
+}
+
+.first-entry-btn:active {
+  transform: translateY(0);
+}
+
+/* ─── Loading state ──────────────────────────────────────────────────────────── */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 20px;
+}
+
+.loading-container p {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  color: #A5917A;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #E8DFD3;
+  border-top-color: #C4A57B;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

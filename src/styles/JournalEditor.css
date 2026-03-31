@@ -1,236 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap');
+
+/* ─── Main Editor Container ────────────────────────────────────────────────────── */
 .journal-editor {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 24px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    max-width: 900px;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(61, 43, 26, 0.06);
+  border: 1px solid #E8DFD3;
+  margin: 0 auto;
 }
 
+/* ─── Toolbar ────────────────────────────────────────────────────────────────── */
 .editor-toolbar {
-    display: flex;
-    gap: 8px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #eee;
+  display: flex;
+  gap: 10px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #F0EBE4;
 }
 
 .editor-toolbar button {
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background: #f9f9f9;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 14px;
-    transition: all 0.2s ease;
+  padding: 8px 14px;
+  border: 1px solid #E8DFD3;
+  border-radius: 8px;
+  background: #FAF8F5;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: #5C4B36;
+  transition: all 0.2s ease;
 }
 
 .editor-toolbar button:hover {
-    background: #73CCF9;
-    border-color: #73CCF9;
-    color: #fff;
+  background: #C4A57B;
+  border-color: #C4A57B;
+  color: white;
+  transform: translateY(-1px);
 }
 
+/* ─── Title Input ─────────────────────────────────────────────────────────────── */
 .editor-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    border: none;
-    outline: none;
-    padding: 12px 0;
-    border-bottom: 2px solid #f0f0f0;
+  font-family: 'Lora', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  padding: 12px 0;
+  border-bottom: 2px solid #F0EBE4;
+  transition: border-color 0.2s ease;
 }
 
 .editor-title:focus {
-    border-bottom-color: #73CCF9;
+  border-bottom-color: #C4A57B;
 }
 
+.editor-title::placeholder {
+  color: #D4C8BA;
+  font-style: italic;
+}
+
+/* ─── Content Area ────────────────────────────────────────────────────────────── */
 .editor-content {
-    min-height: 300px;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    border: none;
-    outline: none;
-    resize: vertical;
-    font-family: inherit;
-    padding: 16px 0;
+  min-height: 350px;
+  font-size: 1rem;
+  line-height: 1.7;
+  border: none;
+  outline: none;
+  resize: vertical;
+  font-family: 'Lora', serif;
+  padding: 16px 0;
+  color: #3D2B1A;
 }
 
+.editor-content::placeholder {
+  color: #D4C8BA;
+  font-style: italic;
+}
+
+/* ─── Sections (People & Tags) ───────────────────────────────────────────────── */
 .editor-section {
-    margin-top: 8px;
-    padding-top: 16px;
-    border-top: 1px solid #eee;
+  margin-top: 12px;
+  padding-top: 20px;
+  border-top: 2px solid #F0EBE4;
 }
 
 .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .section-header span {
-    font-weight: 600;
-    color: #555;
+  font-weight: 600;
+  color: #5C4B36;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .toggle-btn {
-    background: #73CCF9;
-    border: none;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: #FAF8F5;
+  border: 1px solid #E8DFD3;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: #8B7355;
 }
 
+.toggle-btn:hover {
+  background: #C4A57B;
+  border-color: #C4A57B;
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* ─── People Input ────────────────────────────────────────────────────────────── */
 .people-input {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .people-input input {
-    flex: 1;
-    padding: 10px 14px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #E8DFD3;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color 0.2s ease;
 }
 
 .people-input input:focus {
-    border-color: #73CCF9;
+  outline: none;
+  border-color: #C4A57B;
 }
 
 .people-input button {
-    padding: 10px 20px;
-    background: #73CCF9;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
+  padding: 10px 24px;
+  background: #C4A57B;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  color: white;
+  transition: all 0.2s ease;
 }
 
+.people-input button:hover {
+  background: #AD8B62;
+  transform: translateY(-1px);
+}
+
+/* ─── People Tags ─────────────────────────────────────────────────────────────── */
 .people-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .person-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    background: #e8f4fc;
-    border-radius: 20px;
-    font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #FAF8F5;
+  border: 1px solid #E8DFD3;
+  border-radius: 30px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: #5C4B36;
+  transition: all 0.2s ease;
+}
+
+.person-tag:hover {
+  background: #FFF5F0;
+  border-color: #D26A4A;
 }
 
 .person-tag button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #666;
-    padding: 0;
-    line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #A5917A;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s ease;
 }
 
 .person-tag button:hover {
-    color: #e05c5c;
+  color: #D26A4A;
 }
 
+/* ─── Tags Input (similar to people) ──────────────────────────────────────────── */
+.tags-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.tags-input input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #E8DFD3;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.tags-input input:focus {
+  outline: none;
+  border-color: #C4A57B;
+}
+
+.tags-input button {
+  padding: 10px 24px;
+  background: #C4A57B;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.tags-input button:hover {
+  background: #AD8B62;
+  transform: translateY(-1px);
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: #C4A57B20;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  color: #8B7355;
+}
+
+/* ─── Photos Upload ───────────────────────────────────────────────────────────── */
 .upload-btn {
-    padding: 8px 16px;
-    background: #73CCF9;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
+  padding: 8px 20px;
+  background: #FAF8F5;
+  border: 1px solid #E8DFD3;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  color: #5C4B36;
+  transition: all 0.2s ease;
+}
+
+.upload-btn:hover {
+  background: #C4A57B;
+  border-color: #C4A57B;
+  color: white;
 }
 
 .photos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
 }
 
 .photo-item {
-    position: relative;
-    aspect-ratio: 1;
-    border-radius: 8px;
-    overflow: hidden;
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #E8DFD3;
 }
 
 .photo-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.photo-item:hover img {
+  transform: scale(1.05);
 }
 
 .remove-photo {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
 }
 
+.remove-photo:hover {
+  background: #D26A4A;
+  transform: scale(1.1);
+}
+
+/* ─── Editor Actions (Buttons) ───────────────────────────────────────────────── */
 .editor-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    padding-top: 16px;
-    border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 2px solid #F0EBE4;
 }
 
 .cancel-btn,
 .save-btn {
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .cancel-btn {
-    background: #f0f0f0;
-    border: none;
-    color: #666;
+  background: #FAF8F5;
+  border: 1px solid #E8DFD3;
+  color: #8B7355;
 }
 
 .cancel-btn:hover {
-    background: #e0e0e0;
+  background: #F0EBE4;
+  transform: translateY(-1px);
 }
 
 .save-btn {
-    background: #73CCF9;
-    border: none;
-    color: #0A0A0F;
+  background: #C4A57B;
+  border: none;
+  color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .save-btn:hover {
-    background: #5bb8e8;
+  background: #AD8B62;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(196, 165, 123, 0.3);
 }
 
 .save-btn:disabled,
 .cancel-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── Responsive Design ──────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .journal-editor {
+    padding: 20px;
+  }
+  
+  .editor-title {
+    font-size: 1.5rem;
+  }
+  
+  .editor-actions {
+    flex-direction: column;
+  }
+  
+  .cancel-btn,
+  .save-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .photos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
 }
