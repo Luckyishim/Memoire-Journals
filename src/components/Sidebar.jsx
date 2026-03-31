@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 export function Sidebar() {
     const navigate = useNavigate();
     const [collapsed, setCollapsed] = useState(false);
+    const [searchInput, setSearchInput] = useState("");  // ADD
 
     return (
         <div className={`sidebar ${collapsed ? "collapsed" : ""}`} style={{ width: collapsed ? "60px" : "18%", transition: "width 0.2s ease" }}>
@@ -28,9 +29,11 @@ export function Sidebar() {
                     <input
                         type="text"
                         placeholder="Search Entries..."
+                        value={searchInput}                          // ADD
+                        onChange={(e) => setSearchInput(e.target.value)}  // ADD
                         onKeyDown={(e) => {
                             if (e.key === "Enter") {
-                                navigate("/dashboard");
+                                navigate(`/journals?search=${searchInput}`)  // CHANGED
                             }
                         }}
                     />
@@ -38,36 +41,23 @@ export function Sidebar() {
             )}
 
             <div className="pages">
-                <button
-                    title="Journal"
-                    onClick={() => navigate("/editor")}
-                >
+                <button title="Journal" onClick={() => navigate("/journals")}>
                     <img src="/images/journal.png" alt="Journal" className="btn-icon" />
                     {!collapsed && <span className="btn-label">Journal</span>}
                 </button>
-                <button
-                    title="People"
-                    onClick={() => navigate("/people")}
-                >
+                <button title="People" onClick={() => navigate("/people")}>
                     <img src="/images/user.png" alt="People" className="btn-icon" />
                     {!collapsed && <span className="btn-label">People</span>}
                 </button>
-                <button
-                    title="Gallery"
-                    onClick={() => navigate("/gallery")}
-                >
+                <button title="Gallery" onClick={() => navigate("/gallery")}>
                     <img src="/images/gallery.png" alt="Gallery" className="btn-icon" />
                     {!collapsed && <span className="btn-label">Gallery</span>}
                 </button>
-                <button
-                    title="Settings"
-                    onClick={() => navigate("/settings")}
-                >
+                <button title="Settings" onClick={() => navigate("/settings")}>
                     <img src="/images/setting.png" alt="Settings" className="btn-icon" />
                     {!collapsed && <span className="btn-label">Settings</span>}
                 </button>
             </div>
-
         </div>
     );
 }

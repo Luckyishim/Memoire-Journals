@@ -9,7 +9,8 @@ import {
     LoginPage,
     GalleryPage,
     PeoplePage,
-    SettingsPage
+    SettingsPage,
+    JournalsPage
 } from "./pages";
 
 function Mainlayout({ children }) {
@@ -38,6 +39,13 @@ function App() {
                                 <Mainlayout>
                                     <ProtectedRoute>
                                         <DashboardPage />
+                                    </ProtectedRoute>
+                                </Mainlayout>
+                            } />
+                            <Route path="/journals" element={
+                                <Mainlayout>
+                                    <ProtectedRoute>
+                                        <JournalsPage />
                                     </ProtectedRoute>
                                 </Mainlayout>
                             } />

@@ -8,10 +8,13 @@ import {
     query,
     orderBy,
     onSnapshot,
-    where
+    where,
+    serverTimestamp
 } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../index";
 import { JournalContext } from "../context";
+import { parsePeople } from "../utils/parsePeople";
 
 export function JournalProvider({ children }) {
     const [entries, setEntries] = useState([]);
@@ -19,54 +22,61 @@ export function JournalProvider({ children }) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const user = auth.currentUser;
-        if (!user) {
-            setEntries([]);
-            setLoading(false);
-            return;
-        }
+        let unsubscribeSnapshot = null;
 
-        setLoading(true);
-        const q = query(
-            collection(db, "entries"),
-            where("userId", "==", user.uid),
-            orderBy("createdAt", "desc")
-        );
+        const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+            if (unsubscribeSnapshot) unsubscribeSnapshot();
 
-        const unsubscribe = onSnapshot(
-            q,
-            (snapshot) => {
-                const fetchedEntries = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data(),
-                    createdAt: doc.data().createdAt?.toDate(),
-                    updatedAt: doc.data().updatedAt?.toDate()
-                }));
-                setEntries(fetchedEntries);
+            if (!user) {
+                setEntries([]);
                 setLoading(false);
-            },
-            (err) => {
-                console.error("Error fetching entries:", err);
-                setError(err.message);
-                setLoading(false);
+                return;
             }
-        );
 
-        return () => unsubscribe();
+            setLoading(true);
+            const q = query(
+                collection(db, "entries"),
+                where("userId", "==", user.uid),
+                orderBy("createdAt", "desc")
+            );
+
+            unsubscribeSnapshot = onSnapshot(
+                q,
+                (snapshot) => {
+                    const fetchedEntries = snapshot.docs.map(d => ({
+                        id: d.id,
+                        ...d.data(),
+                        createdAt: d.data().createdAt?.toDate(),
+                        updatedAt: d.data().updatedAt?.toDate()
+                    }));
+                    setEntries(fetchedEntries);
+                    setLoading(false);
+                },
+                (err) => {
+                    console.error("Error fetching entries:", err);
+                    setError(err.message);
+                    setLoading(false);
+                }
+            );
+        });
+
+        return () => {
+            unsubscribeAuth();
+            if (unsubscribeSnapshot) unsubscribeSnapshot();
+        };
     }, []);
 
-    // Add a new entry
     const addEntry = async (entryData) => {
         try {
             const user = auth.currentUser;
             if (!user) throw new Error("User not authenticated");
 
             const newEntry = {
-                title: entryData.title || "Untitled",
-                content: entryData.content || "",
+                title: entryData?.title || "Untitled",
+                content: entryData?.content || "",
                 userId: user.uid,
-                createdAt: new Date(),
-                updatedAt: new Date()
+                createdAt: serverTimestamp(),
+                updatedAt: serverTimestamp()
             };
 
             const docRef = await addDoc(collection(db, "entries"), newEntry);
@@ -81,16 +91,14 @@ export function JournalProvider({ children }) {
         try {
             const entryRef = doc(db, "entries", id);
             await updateDoc(entryRef, {
-                title: updateData.title || "Untitled",
-                content: updateData.content || "",
-                updatedAt: new Date()
+                ...updateData,
+                updatedAt: serverTimestamp()
             });
         } catch (err) {
             console.error("Error updating entry:", err);
             throw err;
         }
     };
-
 
     const deleteEntry = async (id) => {
         try {
@@ -101,13 +109,10 @@ export function JournalProvider({ children }) {
         }
     };
 
-
     const getEntryById = (id) => entries.find(entry => entry.id === id);
-
 
     const searchEntries = (searchTerm) => {
         if (!searchTerm.trim()) return entries;
-
         const term = searchTerm.toLowerCase();
         return entries.filter(entry =>
             entry.title?.toLowerCase().includes(term) ||
@@ -115,16 +120,20 @@ export function JournalProvider({ children }) {
         );
     };
 
-   
-    const getEntriesByDate = (date) => {
-        const targetDate = new Date(date);
-        targetDate.setHours(0, 0, 0, 0);
-
-        return entries.filter(entry => {
-            const entryDate = new Date(entry.createdAt);
-            entryDate.setHours(0, 0, 0, 0);
-            return entryDate.getTime() === targetDate.getTime();
+    // Compute people from all entries
+    const getPeopleFromEntries = () => {
+        const peopleMap = {};
+        entries.forEach(entry => {
+            const names = parsePeople(entry.content || "");
+            names.forEach(name => {
+                if (!peopleMap[name]) {
+                    peopleMap[name] = { name, entryIds: [], count: 0 };
+                }
+                peopleMap[name].entryIds.push(entry.id);
+                peopleMap[name].count++;
+            });
         });
+        return Object.values(peopleMap);
     };
 
     const value = {
@@ -136,7 +145,8 @@ export function JournalProvider({ children }) {
         deleteEntry,
         getEntryById,
         searchEntries,
-        getEntriesByDate
+        getPeopleFromEntries,
+        people: getPeopleFromEntries()
     };
 
     return (

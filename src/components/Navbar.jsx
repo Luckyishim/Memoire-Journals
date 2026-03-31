@@ -2,15 +2,13 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Navbar.css"
 import { ThemeToggle } from "./ThemeToggle";
 import { useEffect, useRef, useState } from "react";
-import { auth } from "../index";
+import { useAuth } from "../hooks";
 import {
-    onAuthStateChanged,
     updateProfile,
     updateEmail,
     updatePassword,
     reauthenticateWithCredential,
     EmailAuthProvider,
-    signOut
 } from "firebase/auth";
 
 function getGreeting() {
@@ -23,14 +21,13 @@ function getGreeting() {
 export function Navbar() {
     const greeting = getGreeting();
     const navigate = useNavigate();
-
-    const [user, setUser] = useState(null);
+    const { user, logout } = useAuth();
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [showPasswordFields, setShowPasswordFields] = useState(false);
     const [formData, setFormData] = useState({
-        username: "",
-        email: "",
+        username: user?.displayName || "",
+        email: user?.email || "",
         currentPassword: "",
         newPassword: "",
         confirmPassword: "",
@@ -38,19 +35,8 @@ export function Navbar() {
     const [message, setMessage] = useState("");
     const dropdownRef = useRef(null);
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-            if (firebaseUser) {
-                setUser(firebaseUser);
-                setFormData(prev => ({
-                    ...prev,
-                    username: firebaseUser.displayName || "",
-                    email: firebaseUser.email || "",
-                }));
-            }
-        });
-        return () => unsubscribe();
-    }, []);
+ 
+
 
     useEffect(() => {
         function handleClickOutside(e) {
@@ -69,7 +55,6 @@ export function Navbar() {
     };
 
     const handleSave = async () => {
-
         try {
             const credential = EmailAuthProvider.credential(
                 user.email,
@@ -77,7 +62,7 @@ export function Navbar() {
             );
             await reauthenticateWithCredential(user, credential);
         } catch (err) {
-            console.log(err)
+            console.log(err);
             setMessage("Current password is incorrect! ❌");
             return;
         }
@@ -93,16 +78,13 @@ export function Navbar() {
             if (formData.username !== user.displayName) {
                 await updateProfile(user, { displayName: formData.username });
             }
-
             if (formData.email !== user.email) {
                 await updateEmail(user, formData.email);
             }
-
             if (showPasswordFields && formData.newPassword) {
                 await updatePassword(user, formData.newPassword);
             }
 
-            setUser(auth.currentUser);
             setMessage("Account has been updated! 🎉");
             setFormData(prev => ({
                 ...prev,
@@ -111,7 +93,6 @@ export function Navbar() {
                 confirmPassword: ""
             }));
             setShowPasswordFields(false);
-
         } catch (err) {
             console.error(err);
             if (err.code === 'auth/email-already-in-use') {
@@ -125,7 +106,7 @@ export function Navbar() {
     };
 
     const handleLogout = async () => {
-        await signOut(auth);
+        await logout();
         navigate("/");
     };
 
@@ -155,66 +136,29 @@ export function Navbar() {
             {dropdownOpen && (
                 <div className="acc-dropdown" ref={dropdownRef}>
                     <h3>Edit Account</h3>
-
                     <label>Username</label>
-                    <input name="username"
-                        value={formData.username}
-                        onChange={handleChange} />
-
+                    <input name="username" value={formData.username} onChange={handleChange} />
                     <label>Email</label>
-                    <input name="email"
-                        value={formData.email}
-                        onChange={handleChange} />
-
+                    <input name="email" value={formData.email} onChange={handleChange} />
                     <hr />
-                    <div
-                        className="pass-toggle"
-                        onClick={() => {
-                            setShowPasswordFields(!showPasswordFields);
-                            setMessage("");
-                        }}
-                    >
+                    <div className="pass-toggle" onClick={() => { setShowPasswordFields(!showPasswordFields); setMessage(""); }}>
                         <span>{showPasswordFields ? "▲" : "▼"} Change Password</span>
                     </div>
-
                     {showPasswordFields && (
                         <>
                             <label>New Password</label>
-                            <input name="newPassword"
-                                type="password"
-                                value={formData.newPassword}
-                                onChange={handleChange}
-                                placeholder="New Password"
-                            />
+                            <input name="newPassword" type="password" value={formData.newPassword} onChange={handleChange} placeholder="New Password" />
                             <label>Confirm New Password</label>
-                            <input name="confirmPassword"
-                                type="password"
-                                value={formData.confirmPassword}
-                                onChange={handleChange}
-                                placeholder="Confirm Password"
-                            />
+                            <input name="confirmPassword" type="password" value={formData.confirmPassword} onChange={handleChange} placeholder="Confirm Password" />
                         </>
                     )}
-
                     <hr />
-                    {/* ✅ Current password always required to save any changes */}
                     <label>Current Password (required to save)</label>
-                    <input name="currentPassword"
-                        type="password"
-                        value={formData.currentPassword}
-                        onChange={handleChange}
-                        placeholder="Enter current password"
-                    />
-
+                    <input name="currentPassword" type="password" value={formData.currentPassword} onChange={handleChange} placeholder="Enter current password" />
                     {message && <p className="dropdown-msg">{message}</p>}
-                    <button className="save-btn" onClick={handleSave}>
-                        Save Changes
-                    </button>
-
+                    <button className="save-btn" onClick={handleSave}>Save Changes</button>
                     <hr />
-                    <button className="logout-btn" onClick={handleLogout}>
-                        Logout
-                    </button>
+                    <button className="logout-btn" onClick={handleLogout}>Logout</button>
                 </div>
             )}
         </nav>

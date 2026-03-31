@@ -12,13 +12,11 @@ export function PeoplePage() {
 
     const filteredPeople = searchTerm
         ? people.filter(person =>
-              person.name.toLowerCase().includes(searchTerm.toLowerCase())
-          )
+            person.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
         : people;
 
-    const getEntryDetails = (entryId) => {
-        return entries.find(e => e.id === entryId);
-    };
+    const getEntryDetails = (entryId) => entries.find(e => e.id === entryId);
 
     const handlePersonClick = (personName) => {
         setExpandedPerson(expandedPerson === personName ? null : personName);
@@ -34,10 +32,7 @@ export function PeoplePage() {
             </div>
 
             <div className="people-search">
-                <SearchBar
-                    onSearch={setSearchTerm}
-                    placeholder="Search people..."
-                />
+                <SearchBar onSearch={setSearchTerm} placeholder="Search people..." />
             </div>
 
             <div className="people-list">
@@ -47,7 +42,7 @@ export function PeoplePage() {
                         <p>
                             {searchTerm
                                 ? `No people found matching "${searchTerm}"`
-                                : "No people tracked yet. Mention someone in your journal entries!"}
+                                : "No people tracked yet. Mention someone with @name in your journal entries!"}
                         </p>
                     </div>
                 ) : (
@@ -81,16 +76,15 @@ export function PeoplePage() {
                                             const entry = getEntryDetails(entryId);
                                             if (!entry) return null;
                                             return (
-                                                <div
-                                                    key={entryId}
-                                                    className="entry-reference"
-                                                >
+                                                <div key={entryId} className="entry-reference">
                                                     <span className="entry-date">
-                                                        {new Date(entry.createdAt).toLocaleDateString("en-US", {
-                                                            month: "short",
-                                                            day: "numeric",
-                                                            year: "numeric"
-                                                        })}
+                                                        {entry.createdAt
+                                                            ? new Date(entry.createdAt).toLocaleDateString("en-US", {
+                                                                month: "short",
+                                                                day: "numeric",
+                                                                year: "numeric"
+                                                            })
+                                                            : ""}
                                                     </span>
                                                     <p className="entry-title">
                                                         {entry.title || "Untitled Entry"}

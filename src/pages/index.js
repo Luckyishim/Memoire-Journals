@@ -4,3 +4,4 @@ export { EditorPage } from "./EditorPage";
 export { GalleryPage } from "./GalleryPage";
 export { PeoplePage } from "./PeoplePage";
 export { SettingsPage } from "./SettingsPage";
+export {JournalsPage} from "./JournalsPage"
