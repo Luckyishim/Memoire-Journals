@@ -57,3 +57,46 @@
     background: var(--border-dark);
     color: var(--text-main);
 }
+
+/* ====== Responsive Search Bar ====== */
+@media (max-width: 768px) {
+    .search-bar {
+        width: 200px;
+        padding: 8px 12px;
+    }
+
+    .search-icon {
+        font-size: 1rem;
+    }
+
+    .search-input {
+        font-size: 0.9rem;
+    }
+
+    .clear-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar {
+        width: 100%;
+        padding: 8px 10px;
+    }
+
+    .search-icon {
+        font-size: 0.95rem;
+    }
+
+    .search-input {
+        font-size: 0.85rem;
+    }
+
+    .clear-btn {
+        width: 18px;
+        height: 18px;
+        font-size: 11px;
+    }
+}

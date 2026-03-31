@@ -51,3 +51,16 @@ body.dark-mode .entry-date,
 body.dark-mode .person-details p {
     color: var(--text-muted);
 }
+
+/* ====== Responsive Global Styles ====== */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 13px;
+    }
+}

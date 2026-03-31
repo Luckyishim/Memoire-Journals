@@ -238,28 +238,120 @@
 
     .journal-editor .editor-toolbar {
         gap: 4px;
+        padding: 8px;
     }
 
     .journal-editor .editor-toolbar button {
-        padding: 4px 8px;
-        font-size: 12px;
+        padding: 6px 10px;
+        font-size: 11px;
     }
 
     .journal-editor .editor-title {
         font-size: 20px;
+        padding: 10px;
+    }
+
+    .journal-editor .editor-content {
+        font-size: 15px;
+        padding: 10px;
+        min-height: 250px;
     }
 
     .journal-editor .photos-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 8px;
+    }
+
+    .journal-editor .photo-item img {
+        height: 120px;
     }
 
     .journal-editor .editor-actions {
         flex-wrap: wrap;
+        gap: 8px;
     }
 
     .journal-editor .delete-btn {
         order: -1;
         width: 100%;
         margin-bottom: 8px;
+    }
+
+    .journal-editor .editor-actions .cancel-btn,
+    .journal-editor .editor-actions .save-btn {
+        width: calc(50% - 4px);
+    }
+}
+
+@media (max-width: 480px) {
+    .journal-editor {
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .journal-editor .editor-toolbar {
+        gap: 2px;
+        padding: 6px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .journal-editor .editor-toolbar button {
+        padding: 5px 8px;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    .journal-editor .editor-title {
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    .journal-editor .editor-content {
+        font-size: 14px;
+        padding: 8px;
+        min-height: 200px;
+    }
+
+    .journal-editor .editor-section {
+        padding: 12px;
+        border-radius: 6px;
+    }
+
+    .journal-editor .people-input {
+        flex-direction: column;
+    }
+
+    .journal-editor .people-input button {
+        width: 100%;
+    }
+
+    .journal-editor .photos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 6px;
+    }
+
+    .journal-editor .photo-item img {
+        height: 100px;
+    }
+
+    .journal-editor .person-tag {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    .journal-editor .editor-actions button {
+        width: 100%;
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .journal-editor .editor-actions .cancel-btn,
+    .journal-editor .editor-actions .save-btn {
+        width: 100%;
+    }
+
+    .journal-editor .delete-btn {
+        margin-bottom: 12px;
     }
 }

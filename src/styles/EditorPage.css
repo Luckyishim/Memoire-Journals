@@ -290,3 +290,139 @@
     transform: rotate(360deg);
   }
 }
+
+/* ====== Responsive Editor Page ====== */
+@media (max-width: 1024px) {
+  .editor-page {
+    padding: 32px 20px 60px;
+  }
+
+  .editor-page-wrapper {
+    padding: 28px 20px 48px;
+  }
+
+  .back-btn {
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+  }
+
+  .editor-page-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .entry-item {
+    padding: 16px 20px;
+  }
+
+  .entry-item-content h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .editor-page {
+    padding: 24px 16px 48px;
+  }
+
+  .editor-page-wrapper {
+    padding: 24px 16px 40px;
+  }
+
+  .editor-page-header {
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+  }
+
+  .editor-page-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .new-entry-btn {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 8px;
+  }
+
+  .entry-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .entry-delete-btn {
+    align-self: flex-end;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+
+  .entry-item {
+    position: relative;
+  }
+
+  .no-entries {
+    padding: 60px 24px;
+  }
+
+  .no-entries-icon {
+    font-size: 3rem;
+  }
+
+  .no-entries p {
+    font-size: 0.95rem;
+    max-width: 280px;
+  }
+
+  .first-entry-btn {
+    width: 100%;
+    padding: 12px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .editor-page {
+    padding: 20px 12px 40px;
+  }
+
+  .editor-page-wrapper {
+    padding: 20px 12px 32px;
+  }
+
+  .back-btn {
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+  }
+
+  .editor-page-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .entry-item {
+    padding: 14px 12px;
+  }
+
+  .entry-item-content h3 {
+    font-size: 1rem;
+  }
+
+  .entry-date {
+    font-size: 0.75rem;
+  }
+
+  .entry-people-preview,
+  .entry-tags-preview {
+    font-size: 0.75rem;
+  }
+
+  .no-entries {
+    padding: 48px 20px;
+    border-radius: 16px;
+  }
+
+  .first-entry-btn {
+    font-size: 0.8rem;
+  }
+}

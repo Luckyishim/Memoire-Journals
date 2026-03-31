@@ -244,3 +244,150 @@
     font-size: 13px;
     color: var(--text-muted);
 }
+
+/* ====== Responsive Dashboard ====== */
+@media (max-width: 1024px) {
+    .dashboard-page {
+        padding: 20px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .new-entry-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .dashboard-welcome h1 {
+        font-size: 24px;
+    }
+
+    .prompt-text {
+        font-size: 16px;
+    }
+
+    .stat-number {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-page {
+        padding: 16px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .new-entry-btn {
+        width: 100%;
+        padding: 12px 20px;
+    }
+
+    .dashboard-search {
+        max-width: 100%;
+    }
+
+    .dashboard-stats {
+        flex-wrap: wrap;
+    }
+
+    .stat-card {
+        min-width: calc(50% - 8px);
+    }
+
+    .entries-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 12px;
+    }
+
+    .no-entries-dashboard,
+    .no-results {
+        padding: 60px 16px;
+    }
+
+    .no-entries-icon,
+    .no-results-icon {
+        font-size: 3rem;
+    }
+
+    .first-entry-btn {
+        padding: 12px 24px;
+    }
+
+    .recent-header {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-page {
+        padding: 12px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .dashboard-welcome h1 {
+        font-size: 20px;
+    }
+
+    .dashboard-welcome p {
+        font-size: 14px;
+    }
+
+    .prompt-label {
+        font-size: 11px;
+    }
+
+    .prompt-text {
+        font-size: 14px;
+    }
+
+    .stat-card {
+        min-width: 100%;
+        padding: 16px;
+    }
+
+    .stat-number {
+        font-size: 24px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+    }
+
+    .entries-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .no-entries-dashboard p,
+    .no-results p {
+        font-size: 1rem;
+    }
+
+    .first-entry-btn {
+        width: 100%;
+        padding: 12px 20px;
+    }
+
+    .recent-item {
+        padding: 10px 12px;
+    }
+
+    .view-all-btn {
+        font-size: 13px;
+    }
+}

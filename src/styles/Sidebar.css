@@ -176,3 +176,132 @@ body.dark-mode .filter input {
     color: var(--sidebar-text);
     white-space: nowrap;
 }
+
+/* ====== Mobile Sidebar Overlay ====== */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+}
+
+/* ====== Responsive Sidebar ====== */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 20%;
+        padding: 16px 10px;
+    }
+
+    .brand {
+        font-size: 1.1rem;
+    }
+
+    .pages button {
+        height: 48px;
+    }
+
+    .btn-label {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+        padding: 16px 8px;
+        gap: 10px;
+    }
+
+    .sidebar:not(.collapsed) .brand,
+    .sidebar:not(.collapsed) .btn-label,
+    .sidebar:not(.collapsed) .sidebar-recent-label,
+    .sidebar:not(.collapsed) .sidebar-recent-title,
+    .sidebar:not(.collapsed) .sidebar-recent-date {
+        display: none;
+    }
+
+    .sidebar:not(.collapsed) .pages button {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .sidebar:not(.collapsed) .filter {
+        display: none;
+    }
+
+    .brand-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .btn-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .pages button {
+        height: 44px;
+        padding: 0;
+    }
+
+    .collapse-btn {
+        padding: 6px;
+        margin-bottom: 12px;
+    }
+
+    .sidebar-recent {
+        margin-top: 16px;
+        padding: 0 8px;
+    }
+
+    .sidebar-recent-item {
+        justify-content: center;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 280px;
+        max-width: 85%;
+        z-index: 999;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        background-color: var(--sidebar-bg);
+        box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar.open .brand,
+    .sidebar.open .btn-label,
+    .sidebar.open .sidebar-recent-label,
+    .sidebar.open .sidebar-recent-title,
+    .sidebar.open .sidebar-recent-date {
+        display: block;
+    }
+
+    .sidebar.open .filter {
+        display: flex;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+}

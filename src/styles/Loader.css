@@ -33,3 +33,28 @@
   color: var(--text-secondary);
   font-weight: 500;
 }
+
+/* ====== Responsive Loader ====== */
+@media (max-width: 768px) {
+  .spinner {
+    width: 36px;
+    height: 36px;
+  }
+
+  .loader p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .spinner {
+    width: 32px;
+    height: 32px;
+    border-width: 3px;
+  }
+
+  .loader p {
+    margin-top: 10px;
+    font-size: 0.85rem;
+  }
+}

@@ -87,3 +87,78 @@
     justify-content: center;
     height: 60vh;
 }
+
+/* ====== Responsive Journal Page ====== */
+@media (max-width: 1024px) {
+    .journal-page {
+        padding: 20px;
+    }
+
+    .journal-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .journal-new-entry-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .journal-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .journal-page {
+        padding: 16px;
+    }
+
+    .journal-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .journal-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .journal-new-entry-btn {
+        width: 100%;
+        padding: 12px 20px;
+    }
+
+    .journal-empty,
+    .journal-no-results {
+        padding: 60px 16px;
+    }
+
+    .journal-first-entry-btn {
+        padding: 12px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .journal-page {
+        padding: 12px;
+    }
+
+    .journal-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .journal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .journal-empty p,
+    .journal-no-results p {
+        font-size: 1rem;
+    }
+
+    .journal-first-entry-btn {
+        width: 100%;
+        padding: 12px 20px;
+    }
+}
