@@ -1,6 +1,5 @@
 # Memoire-Journals
-
-To run the app just got to this link  https://memoire-0610.web.app
+Use this website on https://memoire-0610.web.app
 
 
 # Memoire — Personal Journaling Web App
