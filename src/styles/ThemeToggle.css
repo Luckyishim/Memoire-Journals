@@ -5,4 +5,17 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    transition: background 0.2s ease;
+}
+
+.theme:hover {
+    background: #5bb8e8;
+}
+
+body.dark-mode .theme {
+    background: #1f2937;
 }

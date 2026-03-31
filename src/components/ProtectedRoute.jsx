@@ -2,7 +2,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "..";
-import  Loader  from "./Loader"
+import  {Loader}  from "./Loader"
 
 export function ProtectedRoute({ children }) {
     const navigate = useNavigate()

@@ -10,6 +10,11 @@
     gap: 0;
 }
 
+body.dark-mode .sidebar {
+    background-color: #16213e;
+    border-right-color: #0f3460;
+}
+
 .sidebar.collapsed .pages button {
     justify-content: center;
     padding: 0;
@@ -39,6 +44,10 @@
     white-space: nowrap;
 }
 
+body.dark-mode .brand {
+    color: #eaeaea;
+}
+
 .filter {
     display: flex;
     align-items: center;
@@ -51,12 +60,21 @@
     margin-bottom: 24px;
 }
 
+body.dark-mode .filter {
+    background: #1f2937;
+    border-color: #4b5563;
+}
+
 .filter input {
     background: transparent;
     border: none;
     outline: none;
     width: 100%;
     color: #000;
+}
+
+body.dark-mode .filter input {
+    color: #eaeaea;
 }
 
 .pages {
@@ -84,6 +102,10 @@
     background-color: #78d2ff;
 }
 
+body.dark-mode .pages button:hover {
+    background-color: #1f2937;
+}
+
 .pages button:active {
     transform: scale(0.98);
     background-color: #78d2ff;
@@ -101,4 +123,8 @@
     font-weight: 500;
     color: #000000;
     white-space: nowrap;
+}
+
+body.dark-mode .btn-label {
+    color: #eaeaea;
 }

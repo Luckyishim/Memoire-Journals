@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/Navbar.css"
-import ThemeToggle from "./ThemeToggle";
+import { ThemeToggle } from "./ThemeToggle";
 import { useEffect, useRef, useState } from "react";
 import { auth } from "../index";
 import {
@@ -42,7 +42,7 @@ export function Navbar() {
         const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
             if (firebaseUser) {
                 setUser(firebaseUser);
-                        setFormData(prev => ({
+                setFormData(prev => ({
                     ...prev,
                     username: firebaseUser.displayName || "",
                     email: firebaseUser.email || "",
@@ -136,7 +136,7 @@ export function Navbar() {
             <div className="logo">
                 <img src="/images/letter-m.png"
                     alt="logo"
-                    onClick={()=> navigate("/dashboard")}
+                    onClick={() => navigate("/dashboard")}
                     width="36"
                     height="36" />
             </div>

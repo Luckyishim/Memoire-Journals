@@ -1,0 +1,154 @@
+.editor-page {
+    padding: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.editor-page-wrapper {
+    padding: 24px;
+}
+
+.back-btn {
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    color: #666;
+    cursor: pointer;
+    margin-bottom: 16px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #f0f0f0;
+    color: #0A0A0F;
+}
+
+.editor-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.editor-page-header h1 {
+    font-size: 1.8rem;
+    color: #0A0A0F;
+    margin: 0;
+}
+
+.new-entry-btn {
+    padding: 12px 24px;
+    background: #73CCF9;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.new-entry-btn:hover {
+    background: #5bb8e8;
+    transform: translateY(-1px);
+}
+
+.entries-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.entry-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.entry-item:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.entry-item-content {
+    flex: 1;
+}
+
+.entry-item-content h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+    color: #0A0A0F;
+}
+
+.entry-date {
+    margin: 0;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.entry-people-preview {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.entry-delete-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+    padding: 8px;
+}
+
+.entry-delete-btn:hover {
+    opacity: 1;
+}
+
+.no-entries {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.no-entries-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+}
+
+.no-entries p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.first-entry-btn {
+    padding: 14px 32px;
+    background: #73CCF9;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.first-entry-btn:hover {
+    background: #5bb8e8;
+    transform: translateY(-1px);
+}

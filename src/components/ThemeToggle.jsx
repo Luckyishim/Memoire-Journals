@@ -1,19 +1,14 @@
+import { useTheme } from "../hooks";
 import "../styles/ThemeToggle.css"
-import { useState } from 'react'
 
-function ThemeToggle() {
-    const [darkMode, setDarkMode] = useState(true);
-    const clickHandler = () => {
-        setDarkMode((value) => !value)
-    }
+export function ThemeToggle() {
+    const { darkMode, toggleTheme } = useTheme();
 
     return (
-        <div className='' > 
-            <button onClick={clickHandler} className='theme'>
-                {darkMode ? '☀︎' : '⏾'}
+        <div>
+            <button onClick={toggleTheme} className='theme'>
+                {darkMode ? '☀︎' : '☾'}
             </button>
         </div>
     )
 }
-
-export default ThemeToggle

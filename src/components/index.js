@@ -1,5 +1,12 @@
 export { Navbar } from "./Navbar";
-export {Sidebar} from "./Sidebar";
-export {ProtectedRoute} from "./ProtectedRoute";
-
-
+export { Sidebar } from "./Sidebar";
+export { ProtectedRoute } from "./ProtectedRoute";
+export { EntryCard } from "./EntryCard";
+export { JournalEditor } from "./JournalEditor";
+export { SearchBar } from "./SearchBar";
+export { Modal } from "./Modal";
+export { Toast } from "./Toast";
+export { Loader } from "./Loader";
+export { ThemeToggle } from "./ThemeToggle";
+export { PersonTag } from "./PersonTag";
+export { PhotoCard } from "./PhotoCard";
