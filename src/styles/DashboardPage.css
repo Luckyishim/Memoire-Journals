@@ -2,6 +2,7 @@
     padding: 24px;
     max-width: 1200px;
     margin: 0 auto;
+    background-color: #F0E8DB;
 }
 
 .dashboard-header {
@@ -111,4 +112,135 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+/* ── Welcome ── */
+.dashboard-welcome {
+    margin-bottom: 32px;
+}
+
+.dashboard-welcome h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #0A0A0F;
+}
+
+.dashboard-welcome p {
+    color: #888;
+    font-size: 16px;
+}
+
+/* ── Writing prompt ── */
+.dashboard-prompt {
+    background: #f9f9f9;
+    border-left: 4px solid #73CCF9;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+}
+
+.prompt-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.prompt-text {
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+/* ── Stats ── */
+.dashboard-stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    flex: 1;
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #73CCF9;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #888;
+}
+
+.dashboard-recent {
+    margin-top: 8px;
+}
+
+.recent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.recent-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0A0A0F;
+}
+
+.view-all-btn {
+    background: none;
+    border: none;
+    color: #73CCF9;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.view-all-btn:hover {
+    color: #5bb8e8;
+}
+
+.recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.recent-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.recent-item:hover {
+    background: #eef9fe;
+}
+
+.recent-title {
+    font-weight: 500;
+    color: #0A0A0F;
+}
+
+.recent-date {
+    font-size: 13px;
+    color: #888;
 }

@@ -8,9 +8,10 @@
 
 body {
     font-family: 'Quicksand', sans-serif;
-    background: #f5f7fa;
+
     color: #0A0A0F;
     transition: background 0.3s ease, color 0.3s ease;
+        background-color: #F0E8DB;
 }
 
 body.dark-mode {

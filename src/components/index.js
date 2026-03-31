@@ -9,4 +9,3 @@ export { Toast } from "./Toast";
 export { Loader } from "./Loader";
 export { ThemeToggle } from "./ThemeToggle";
 export { PersonTag } from "./PersonTag";
-export { PhotoCard } from "./PhotoCard";

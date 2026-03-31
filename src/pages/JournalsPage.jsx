@@ -1,61 +1,69 @@
-import { useSearchParams, useNavigate } from "react-router-dom"  // ADD useSearchParams
-import { EntryCard } from "../components"
-import { useJournal } from "../hooks"
-import "../styles/DashboardPage.css"
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { EntryCard } from "../components";
+import { useJournal } from "../hooks";
+import "../styles/JournalPage.css";
 
 export function JournalsPage() {
-    const navigate = useNavigate()
-    const [searchParams] = useSearchParams()                      // ADD
-    const searchTerm = searchParams.get("search") || ""          // ADD
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const searchTerm = searchParams.get("search") || "";
 
-    const { entries, loading, deleteEntry, searchEntries } = useJournal()
-    const filteredEntries = searchTerm ? searchEntries(searchTerm) : entries
+    const { entries, loading, deleteEntry, searchEntries } = useJournal();
+    const filteredEntries = searchTerm ? searchEntries(searchTerm) : entries;
 
-    const handleDelete = (id) => deleteEntry(id)
+    const handleDelete = (id) => deleteEntry(id);
 
     if (loading) {
         return (
-            <div className="dashboard-loading">
+            <div className="journal-loading">
                 <p>Loading your entries...</p>
             </div>
-        )
+        );
     }
 
     return (
-        <div className="dashboard-page">
-            <div className="dashboard-header">
+        <div className="journal-page">
+            <div className="journal-header">
                 <h1>My Journal</h1>
-                <button className="new-entry-btn" onClick={() => navigate("/editor")}>
+                <button
+                    className="journal-new-entry-btn"
+                    onClick={() => navigate("/editor")}
+                >
                     + New Entry
                 </button>
             </div>
 
-            {/* NO SearchBar here anymore! */}
-
-            <div className="dashboard-content">
+            <div className="journal-content">
                 {filteredEntries.length === 0 ? (
                     searchTerm ? (
-                        <div className="no-results">
+                        <div className="journal-no-results">
                             <span>🔍</span>
                             <p>No entries match "{searchTerm}"</p>
                         </div>
                     ) : (
-                        <div className="no-entries-dashboard">
+                        <div className="journal-empty">
                             <span>📖</span>
                             <p>No entries yet. Start writing!</p>
-                            <button className="first-entry-btn" onClick={() => navigate("/editor")}>
+                            <button
+                                className="journal-first-entry-btn"
+                                onClick={() => navigate("/editor")}
+                            >
                                 Create First Entry
                             </button>
                         </div>
                     )
                 ) : (
-                    <div className="entries-grid">
+                    <div className="journal-grid">
                         {filteredEntries.map(entry => (
-                            <EntryCard key={entry.id} entry={entry} onDelete={handleDelete} />
+                            <EntryCard
+                                key={entry.id}
+                                entry={entry}
+                                onDelete={handleDelete}
+                            />
                         ))}
                     </div>
                 )}
             </div>
         </div>
-    )
+    );
 }

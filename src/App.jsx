@@ -7,7 +7,6 @@ import {
     DashboardPage,
     EditorPage,
     LoginPage,
-    GalleryPage,
     PeoplePage,
     SettingsPage,
     JournalsPage
@@ -53,13 +52,6 @@ function App() {
                                 <Mainlayout>
                                     <ProtectedRoute>
                                         <EditorPage />
-                                    </ProtectedRoute>
-                                </Mainlayout>
-                            } />
-                            <Route path="/gallery" element={
-                                <Mainlayout>
-                                    <ProtectedRoute>
-                                        <GalleryPage />
                                     </ProtectedRoute>
                                 </Mainlayout>
                             } />
