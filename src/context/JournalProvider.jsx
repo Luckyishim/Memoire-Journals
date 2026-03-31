@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-    getFirestore,
     collection,
     addDoc,
     updateDoc,
@@ -11,11 +10,8 @@ import {
     onSnapshot,
     where
 } from "firebase/firestore";
-import { auth } from "../index";
-import {JournalContext} from "../context"
-
-const db = getFirestore(auth.app);
-
+import { auth, db } from "../index";
+import { JournalContext } from "../context";
 
 export function JournalProvider({ children }) {
     const [entries, setEntries] = useState([]);
@@ -59,13 +55,15 @@ export function JournalProvider({ children }) {
         return () => unsubscribe();
     }, []);
 
+    // Add a new entry
     const addEntry = async (entryData) => {
         try {
             const user = auth.currentUser;
             if (!user) throw new Error("User not authenticated");
 
             const newEntry = {
-                ...entryData,
+                title: entryData.title || "Untitled",
+                content: entryData.content || "",
                 userId: user.uid,
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -83,7 +81,8 @@ export function JournalProvider({ children }) {
         try {
             const entryRef = doc(db, "entries", id);
             await updateDoc(entryRef, {
-                ...updateData,
+                title: updateData.title || "Untitled",
+                content: updateData.content || "",
                 updatedAt: new Date()
             });
         } catch (err) {
@@ -91,6 +90,7 @@ export function JournalProvider({ children }) {
             throw err;
         }
     };
+
 
     const deleteEntry = async (id) => {
         try {
@@ -101,9 +101,9 @@ export function JournalProvider({ children }) {
         }
     };
 
-    const getEntryById = (id) => {
-        return entries.find(entry => entry.id === id);
-    };
+
+    const getEntryById = (id) => entries.find(entry => entry.id === id);
+
 
     const searchEntries = (searchTerm) => {
         if (!searchTerm.trim()) return entries;
@@ -111,11 +111,11 @@ export function JournalProvider({ children }) {
         const term = searchTerm.toLowerCase();
         return entries.filter(entry =>
             entry.title?.toLowerCase().includes(term) ||
-            entry.content?.toLowerCase().includes(term) ||
-            entry.people?.some(person => person.name?.toLowerCase().includes(term))
+            entry.content?.toLowerCase().includes(term)
         );
     };
 
+   
     const getEntriesByDate = (date) => {
         const targetDate = new Date(date);
         targetDate.setHours(0, 0, 0, 0);
@@ -127,31 +127,6 @@ export function JournalProvider({ children }) {
         });
     };
 
-    const getPeopleFromEntries = () => {
-        const peopleMap = new Map();
-
-        entries.forEach(entry => {
-            entry.people?.forEach(person => {
-                const existing = peopleMap.get(person.name);
-                if (existing) {
-                    existing.count++;
-                    existing.entryIds.add(entry.id);
-                } else {
-                    peopleMap.set(person.name, {
-                        name: person.name,
-                        count: 1,
-                        entryIds: new Set([entry.id])
-                    });
-                }
-            });
-        });
-
-        return Array.from(peopleMap.values()).map(person => ({
-            ...person,
-            entryIds: Array.from(person.entryIds)
-        }));
-    };
-
     const value = {
         entries,
         loading,
@@ -161,8 +136,7 @@ export function JournalProvider({ children }) {
         deleteEntry,
         getEntryById,
         searchEntries,
-        getEntriesByDate,
-        getPeopleFromEntries
+        getEntriesByDate
     };
 
     return (

@@ -13,12 +13,10 @@ export function EditorPage() {
     const [isDeleting, setIsDeleting] = useState(false);
 
     const handleSave = () => {
-        // Navigate back to dashboard after save
         navigate("/dashboard");
     };
 
     const handleCancel = () => {
-        // Navigate back to dashboard on cancel
         navigate("/dashboard");
     };
 
@@ -31,7 +29,6 @@ export function EditorPage() {
         try {
             setIsDeleting(true);
             await deleteEntry(id);
-            // Navigate back to dashboard after delete
             navigate("/dashboard");
         } catch (error) {
             console.error("Error deleting entry:", error);
@@ -55,7 +52,7 @@ export function EditorPage() {
     return (
         <div className="editor-page-wrapper">
             <button className="back-btn" onClick={() => navigate("/dashboard")}>
-                ← Back to Dashboard
+                 Back to Dashboard
             </button>
             <JournalEditor
                 entryId={entryId}

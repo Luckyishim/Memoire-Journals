@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app'
-// import { getAnalytics } from "firebase/analytics";
-import { getAuth, onAuthStateChanged} from 'firebase/auth'
-
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'  
 
 const firebaseApp = initializeApp({
     apiKey: "AIzaSyB-6A30SVNpz_Hlhy3uPSv2WPCLt69fVIc",
@@ -12,9 +11,10 @@ const firebaseApp = initializeApp({
     appId: "1:430538217630:web:e377f3b955522f6bd2438f",
     measurementId: "G-2X97S8E2HE"
 })
-export const auth = getAuth(firebaseApp)
 
-//Detech Auth State
+export const auth = getAuth(firebaseApp)
+export const db = getFirestore(firebaseApp)  
+
 onAuthStateChanged(auth, user => {
     if(user != null){
         console.log('logged in!')
