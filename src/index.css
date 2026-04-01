@@ -18,7 +18,7 @@ body {
     height: 100vh;
 }
 
-/* Global dark mode overrides for components that need them */
+
 body.dark-mode .navbar {
     background: var(--navbar-bg);
 }
@@ -52,7 +52,6 @@ body.dark-mode .person-details p {
     color: var(--text-muted);
 }
 
-/* ====== Responsive Global Styles ====== */
 @media (max-width: 768px) {
     body {
         font-size: 14px;

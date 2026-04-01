@@ -72,13 +72,86 @@ Memoire is a modern, responsive journaling application designed to help users ca
 ## Folder Structure (Simplified)
 
 ```
-src/
-│── components/
-│── pages/
-│── hooks/
-│── styles/
-│── firebase/
-│── assets/
+Memoire-Journals/
+├── index.html                     ← App HTML shell
+├── vite.config.js                 ← Vite build config
+├── package.json                   ← Dependencies & scripts
+├── firebase.json                  ← Firebase hosting config
+├── firestore.rules                ← Firestore security rules
+├── firestore.indexes.json         ← Firestore query indexes
+├── .firebaserc                    ← Firebase project link
+├── .gitignore
+│
+├── public/                        ← Static assets (images, icons)
+│   └── images/                    ← Logo, sidebar, brand icons
+│
+└── src/
+    ├── main.jsx                   ← React entry point
+    ├── App.jsx                    ← Router + provider tree
+    ├── index.js                   ← Firebase initialisation
+    ├── index.css                  ← Global CSS reset
+    │
+    ├── context/                   ← React Context + Providers
+    │   ├── AuthContext.jsx
+    │   ├── AuthProvider.jsx
+    │   ├── JournalContext.jsx
+    │   ├── JournalProvider.jsx
+    │   ├── ThemeContext.jsx
+    │   ├── ThemeProvider.jsx
+    │   └── index.js               ← Barrel export
+    │
+    ├── hooks/                     ← Custom React hooks
+    │   ├── useAuth.js
+    │   ├── useJournal.js
+    │   ├── useTheme.js
+    │   └── index.js               ← Barrel export
+    │
+    ├── utils/                     ← Pure helper functions
+    │   ├── formatDate.js
+    │   ├── parsePeople.js
+    │   └── index.js               ← Barrel export
+    │
+    ├── components/                ← Reusable UI components
+    │   ├── EntryCard.jsx
+    │   ├── JournalEditor.jsx
+    │   ├── Loader.jsx
+    │   ├── Modal.jsx
+    │   ├── Navbar.jsx
+    │   ├── PersonTag.jsx
+    │   ├── ProtectedRoute.jsx
+    │   ├── SearchBar.jsx
+    │   ├── Sidebar.jsx
+    │   ├── ThemeToggle.jsx
+    │   ├── Toast.jsx
+    │   └── index.js               ← Barrel export
+    │
+    ├── pages/                     ← Full-screen route views
+    │   ├── DashboardPage.jsx
+    │   ├── EditorPage.jsx
+    │   ├── JournalsPage.jsx
+    │   ├── LoginPage.jsx
+    │   ├── PeoplePage.jsx
+    │   ├── SettingsPage.jsx
+    │   └── index.js               ← Barrel export
+    │
+    └── styles/                    ← Component-scoped CSS files
+        ├── Color.css
+        ├── DashboardPage.css
+        ├── EditorPage.css
+        ├── EntryCard.css
+        ├── JournalEditor.css
+        ├── JournalPage.css
+        ├── Loader.css
+        ├── LoginPage.css
+        ├── Modal.css
+        ├── Navbar.css
+        ├── PeoplePage.css
+        ├── SearchBar.css
+        ├── SettingsPage.css
+        ├── Sidebar.css
+        ├── ThemeToggle.css
+        └── Toast.css
+
 ```
 
 ## Deployment
